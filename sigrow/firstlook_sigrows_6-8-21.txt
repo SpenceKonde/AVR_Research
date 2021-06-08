@@ -1,0 +1,135 @@
+iiiiiicccccccccc ccssssssss**400E
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=F328)
+
+iiiiiicccccccccc ccssssssss**410E
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=8F25)
+
+iiiiiicccccccccc ccssssssss**410E
+05******uu05vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=669B)
+
+iiiiiicccccccccc ccssssssss**3F0E
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=0ED8)
+
+iiiiiicccccccccc ccssssssss**410C
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=3F5B)
+
+iiiiiicccccccccc ccssssssss**410D
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=A186)
+
+iiiiiicccccccccc ccssssssss**410D
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=8B5D)
+
+iiiiiicccccccccc ccssssssss**410D
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=CF48)
+
+iiiiiicccccccccc ccssssssss**440D
+05******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=A5A1)
+
+iiiiiicccccccccc ccssssssss**3E0E
+07******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=09B6)
+
+iiiiiicccccccccc ccssssssss**420C
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=35BA)
+
+iiiiiicccccccccc ccssssssss**3E0E
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=8888)
+
+iiiiiicccccccccc ccssssssss**450D
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=F4E5)
+
+iiiiiicccccccccc ccssssssss**3F0E
+06******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=0DFE)
+
+iiiiiicccccccccc ccssssssss**410C
+06******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=94AB)
+
+iiiiiicccccccccc ccssssssss**430C
+06******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=DCB4)
+
+iiiiiicccccccccc ccssssssss**400E
+05******uu07vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=6F09)
+
+iiiiiicccccccccc ccssssssss**400D
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=605A)
+
+iiiiiicccccccccc ccssssssss**410D
+05******uu05vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=E6EE)
+
+iiiiiicccccccccc ccssssssss**470C
+05******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=C06F)
+
+iiiiiicccccccccc ccssssssss**410C
+06******uu06vvvv oooooooovvvvbbbb
+tttteeeeeeee**** aaaaaaaaaa******
+**************** ************zzzz (z=833C)
+
+i = device id: 1E942A
+a = unknown constant: AEF4E3FC1F. These bytes are all 0xFF on 1-series.
+b = unknown constant: E0F8. 0b11100000 0b11111000. These bytes are EFF8 on the 3216.
+c = constant portion of serial: 3041374134
+s = non-constant portion of serial number
+
+t = temp. sensor cal
+e = oscillator error (not consistently documented,  but same as 0/1-series)
+o = OSCCAL values for internal HF.
+u = OSCCAL 32k (per io header)
+
+v = this value is always 0xFF on the ATtiny1624 - at least the ones I have. On the 3216, these are not 0xFF.
+
+z = checksum (suspected, based on appearances and the reference in iotn1626.h to SIGROW_CHECKSUM1 being located at offset 0x2f. Now, the second byte of this is located at offset 0x3f, but this wouldn't be the first time they slipped on unimportant parameters in an io header.
+
+
+This leaves us with FOUR UNKNOWN BYTES!
+
+One, immediately following OSCCAL32k (uu) above, at offset 0x15 is likely related to OSCCAL32K or is some other cal value. Both this and the OSCCAL32 vakues are present on 3216, and look to have magnitudes, likely the same number.
+
+Thus we are left to ponder northing other than the three mystery bytes:
+offsets 0x0E, 0x0F, 0x10: very little variation. Values are:
+
+0x3E-47
+0x0C, 0x0D, or 0x0E
+0x05, 0x06, or 0x07 (not correllated with above in any obvious way)
+
+And, of course, the two mystery constants:
+AEF4E3FC1F which wasn't present on the 0/1-series at all (was all blank/0xFF)
+E0F8 which was recordeed as EFF8 on the 3216.
