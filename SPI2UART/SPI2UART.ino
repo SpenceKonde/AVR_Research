@@ -1,5 +1,6 @@
 #include <Logic.h>
-// for TinyAVR
+// for TinyAVR 0/1/2-series only - currently. Extension to Dx-series and megaAVR 0 would be trivial. 
+
 
 void setup() {
   VPORTA.DIR=0x60; //Set the PA5 and PA6 pins to outputs - these can be monitored to see which state it is in for debugging.
