@@ -1,6 +1,12 @@
 # Secrets of the SIGROW
 On 21 ATtiny1624's being prepared for sale by tuning, sigrow contents were logged. See the other files in this directory. The structure appears to be as follows:
 
+I've added a sketch that you can run on any tinyAVR or Dx-series (I think) which will spit out on USART0 at 115200 baud the full sigrow contents. It's all empty except for what the datasheet says. 
+We'll stick to the more interesting tinyAVR sigrow. 
+
+There is now a sketch on hwere that lets you gather dataq - and even send it to me! (that would be lovely, Just the CSV lines is fine, that contains all the knowledge it can extract).
+
+
 
 ```
 iiiiiicccccccccc ccssssssss**????
