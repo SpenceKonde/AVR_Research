@@ -29,6 +29,8 @@ z = checksum (suspected, based on appearances and the reference in iotn1626.h to
     it implies that the previous byte is SIGROW_CHECKSUM0 - and this does look like a 2-byte checksum if I've ever seen one.
 
 ```
+The SIGROW on DX-series parts is boring There's nothing there except what they say in the datasheet! Maybe there is information hidden elsewhere.... LAAAAAAAAAME!
+
 
 ### OSCERR notes:
 * Average value for 16 MHz was around 1 (-3-5 and -4-5 range at 3 and 5 V observed). Average magnitude 2.65, 2.68. 62% of samples had the same value for 3V and 5V
