@@ -10,3 +10,10 @@ While preparing [ATtiny1624 boards for sale](https://www.tindie.com/products/175
 
 
 [known information](sigrow/README.md)
+
+## Mysteries
+These are things not adequately explained or where there is an inconsistency within the datasheet, and I am not aware of anyone having tried to sort out how the part(s) actually behave. This is concerned primarilly with the modern AVR parts in general, though a few notes relating to classic tinyAVR devices may be listed. 
+
+Be sure to let me know if you know anything about this, and I'll move it to a solved mysteries page, with the answer and - if you want it - your name and a link to your website. If not specified, I'll credit github usernames. 
+
+[Unsolved Mystery list](UnsolvedMysteries.md)
