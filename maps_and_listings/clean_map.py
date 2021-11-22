@@ -1,3 +1,12 @@
+# Written by Spence Konde (C) 2021
+# This code is clumsy and amateurish. 
+# Of course it is, I don't even know python!
+# This is released as open source software under the GPL v2.1
+# though you might be better off starting from scratch
+# if you want to do anything other than read AVR memory maps
+# in sysv format and not have to write a script ro make them
+# readable. 
+
 import sys
 import re
 
