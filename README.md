@@ -17,3 +17,5 @@ These are things not adequately explained or where there is an inconsistency wit
 Be sure to let me know if you know anything about this, and I'll move it to a solved mysteries page, with the answer and - if you want it - your name and a link to your website. If not specified, I'll credit github usernames. 
 
 [Unsolved Mystery list](UnsolvedMysteries.md)
+
+Anyone providing a proper investigation of the 828 ADC mystery has definitely earned some hardware, in addition to the prestige.
