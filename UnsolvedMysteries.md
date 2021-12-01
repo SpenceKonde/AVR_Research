@@ -5,16 +5,16 @@ Solve these - and let me know if you do. You'll get credit and a link to your re
 There are known to be several undocumented features on the AVR Dx-series. 
 Except for the internal oscillator going up to 32, these are all known from the original headers. 
 
-There are bound to be more. Let's find them.
+There are bound to be more. Let's find them - the initial (generating prospects) part of the search can be automated. Other parts can be done semi-automated
 
 ### Reserved fuse bits
 Most of these fuse bits are known to do nothing. Microchip has shipped product with them set to 0 instead of 1 at the factory. 
 
-Reserved values for fuse group codes have more of a chance of being interesting. Do any of the other BOD voltages on the Dx-series do anything? The tinyAVRs have a ton of "secret" BOD voltage options which work just fine but are not documented.
+Reserved values for fuse group codes have more of a chance of being interesting. Do any of the other BOD voltages on the Dx-series do anything? The tinyAVRs have a ton of "secret" BOD voltage options which work just fine but are not documented. What's with OSCCFG on the Dx having 16 values listed as part of the bitfield, but only 2 that do anything??? (I'm going to guess that at least some of them will be used in the DU, but will do nothing until then. They will need to configure the clock source such that USB will work if you can upload via USB without relying on user code, which the pulled product brief suggested might be a feature (though it's hard to say without context what "Immutable Boot" means, it's certainly suggestive, no?) 
 
 ### Reserved Group Codes
 The easiest one to test. Pull all the group masks and group codes from the headers. 
-For each group mask, check if there are any not covered by the group codes. Turn the peripheral on, in a mode where that group does something visible, and see what happens if you write it 
+For each group mask, check if there are any possible values not covered by the group codes. Turn the peripheral on, in a mode where that group does something visible, and see what happens if you set it to the reseved codes. Read it back and see if the setting "stuck". If not, try disabling the peripheral, writing it, and turning it back on, just in case. 
 
 There's nothing interesting in TCD0.CTRLA, the reserved count prescaler just makes the timer stop :-P
 
