@@ -1,7 +1,53 @@
 # Unsolved Mysteries in AVRs
 Solve these - and let me know if you do. You'll get credit and a link to your report, and (depending on the scale of the mystery) maybe even free hardware. 
 
-## Modern AVRs
+## Modern AVRs - Undocumented Feature Search
+There are known to be several undocumented features on the AVR Dx-series. 
+Except for the internal oscillator going up to 32, these are all known from the original headers. 
+
+There are bound to be more. Let's find them.
+
+### Reserved fuse bits
+Most of these fuse bits are known to do nothing. Microchip has shipped product with them set to 0 instead of 1 at the factory. 
+
+Reserved values for fuse group codes have more of a chance of being interesting. Do any of the other BOD voltages on the Dx-series do anything? The tinyAVRs have a ton of "secret" BOD voltage options which work just fine but are not documented.
+
+### Reserved Group Codes
+The easiest one to test. Pull all the group masks and group codes from the headers. 
+For each group mask, check if there are any not covered by the group codes. Turn the peripheral on, in a mode where that group does something visible, and see what happens if you write it 
+
+There's nothing interesting in TCD0.CTRLA, the reserved count prescaler just makes the timer stop :-P
+
+### Reserved bits
+For all reserved bits, try to write a 1 to them if they read as 0 or a 0 if they read as 1. Any for which the bit written "sticks" should be recorded.
+
+### Reserved Registers - prep
+For a reference state - which will be the state your test sketches start in (likely nothing more than a UART enabled to output serial at some baud rate) loop over all the addresses from 0x040 (0x0000 to 0x003F is the I/O space, and we pretty much know what that's about: the low half is 7 VPORTs and 4 GPIO registers, and the high half has the CCP, SPL, SPH and SREG in it) to 0x1000 (where NVMCTRL starts, and which is likely to be less interesting) and print out the values. Format that into an array and store it in progmem (if it fits). That's your reference. Most of the reserved addresses will read 0x00. 
+### Reserved registers - data gathering
+From your reference known state, start writing to 0xFF to reserved addresses. Then read it back. If you see a non-0xFF value in the address you wrote, that's a **class A** prospect. If you see 0xFF, that's a **class B** prospect. And if you see 0x00, there's no reason to belive it is writable... however, your code should also after each address, read every register in the 0x0040 to 0x1000 range mentioned above and compare it to the reference. any register that now holds a new value should be recorded (to serial). After encountering that, write the most recent address you were working with where you saw that artifact to EEPROM, do a softeware reset, and pick up where you left off.
+It may be that this never happens. It may be that there's some address or range of addresses that always gets stuff written to reserved registers, I suspect that this test won't flag any, but it's a good thing to check. 
+
+### Once youve got a list of prospects
+Sort them by peripheral, and see if you can change the behavior of the peripheral. 
+
+
+## Modern AVRs - Specific
+
+### AVR DA: OSCTEST???
+The AVR128DA64 initial header release contained this line in the EVSYS struct:
+```
+USEROSCTEST;  /* User 43 - OSCTEST */
+```
+Someone should really try it out and figure out what it does! I'd output PWM from a timer clocked from TCA0, and monitor it on the scope while triggering the event. If the chip freezes, and have the chip running something simple like blink so you know if the event straight up freezes the chip or something. My guess is that it's and event so that they could fire it *while executing code* so they can see if whatever they're testing breaks stuff. 
+
+### tinyAVR 2-series: NVMREFEN? 
+VREF.CTRLB has a bit called `NVMREFEN` 
+The description makes very clear that the person writing the documentation didn't know what it did, and probably couldn't find anyone who did. 
+```
+Bit 2 – NVMREFEN NVM Reference Force Enable
+This bit field controls whether the NVMREFEN reference is always on or not
+```
+Wonder what the NVM Reference is actually used for? Can you get it to a point where, measuring the current with sufficient precision, that toggling that bit changes the current drawn? If so, can you find any reserved bits in VREF that a) aren't read-only and b) that impact by how much it changes? (I'd try writing all 1's to the reserved bits, and seeing if any stick). What about other parts? Is there an extra reserved bit that "sticks" in an analogous location? 
 
 ### TCA frequency mode
 The frequency mode of a type A timer is inconsistent with the description of the timer. 
