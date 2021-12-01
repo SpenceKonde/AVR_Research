@@ -1,6 +1,8 @@
 # Unsolved Mysteries in AVRs
 Solve these - and let me know if you do. You'll get credit and a link to your report, and (depending on the scale of the mystery) maybe even free hardware. 
 
+Useful undocumented features that I'm not aware of are a good way to get freebies.
+
 ## Modern AVRs - Undocumented Feature Search
 There are known to be several undocumented features on the AVR Dx-series. 
 Except for the internal oscillator going up to 32, these are all known from the original headers. 
