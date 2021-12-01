@@ -10,7 +10,9 @@ There are bound to be more. Let's find them - the initial (generating prospects)
 ### Reserved fuse bits
 Most of these fuse bits are known to do nothing. Microchip has shipped product with them set to 0 instead of 1 at the factory. 
 
-Reserved values for fuse group codes have more of a chance of being interesting. Do any of the other BOD voltages on the Dx-series do anything? The tinyAVRs have a ton of "secret" BOD voltage options which work just fine but are not documented. What's with OSCCFG on the Dx having 16 values listed as part of the bitfield, but only 2 that do anything??? (I'm going to guess that at least some of them will be used in the DU, but will do nothing until then. They will need to configure the clock source such that USB will work if you can upload via USB without relying on user code, which the pulled product brief suggested might be a feature (though it's hard to say without context what "Immutable Boot" means, it's certainly suggestive, no?) 
+Reserved values for fuse group codes have more of a chance of being interesting. Do any of the other BOD voltages on the Dx-series do anything? The tinyAVRs have a ton of "secret" BOD voltage options which work just fine but are not documented.
+
+What's with OSCCFG on the Dx having 4 bits, but only 2 values that do anything??? (I'm going to guess that at least some of them will be used in the DU, but will do nothing until then. They will need to configure the clock source such that USB will work if you can upload via USB without relying on a user-supplied bootloader, which the pulled product brief could be interpreted to indicate was a feature (it's hard to say what "Immutable Boot" means, but it's certainly suggestive, no?) 
 
 ### Reserved Group Codes
 The easiest one to test. Pull all the group masks and group codes from the headers. 
