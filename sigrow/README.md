@@ -16,15 +16,15 @@ tttteeeeeeee**** aaaaaaaaaa******
 
 
 i = device id: 1E942A
-a = unknown constant: AEF4E3FC1F. These bytes are all 0xFF on 1-series. 10101110 11111000 11100011 11111100 00011111
-b = unknown constant: E0F8 on 1624's. 0b11100000 0b11111000. These bytes are EFF8 on the 3216, which is 0b11101111 0b11111000
+a = unknown constant: AEF4E3FC1F. Confirmed on 3224;. These bytes are all 0xFF on 1-series. 10101110 11111000 11100011 11111100 00011111
+b = unknown constant: E0F8 on 1624's and 3224's. 0b11100000 0b11111000. These bytes are EFF8 on the 3216, which is 0b11101111 0b11111000
     These are rather striking in binary. Highly suggestive that they are a bitmask of some sort. Will be interesting 
     to compare between parts. I have some guesses... 
 c = constant portion of serial over this small sample: 3041374134
 s = non-constant portion of serial number
 
 t = temp. sensor cal
-e = oscillator error (not consistently documented,  but same as 0/1-series)
+e = oscillator error (not consistently documented,  but same as 0/1-series) - Maybe not anymore! The 3224's I've checked have all reported 0xFF for all 5. oxFF could be -1, or it could be just blank. 
 o = OSCCAL values for internal HF.
 u = OSCCAL 32k (per io header)
 
