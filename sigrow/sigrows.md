@@ -85,7 +85,7 @@ Source @techstudio-design
 FFFFFFFFFFFFFFFF FFFFFFFFFFFF1B75
 ```
 
-## ATtiny1626
+## ATtiny1624
 Source @SpenceKonde, early samples.
 ```
 1E942A3041374134 32AC3F503FFF400E
