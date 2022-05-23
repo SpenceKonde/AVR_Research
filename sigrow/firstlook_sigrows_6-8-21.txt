@@ -106,7 +106,7 @@ tttteeeeeeee**** aaaaaaaaaa******
 i = device id: 1E942A
 a = unknown constant: AEF4E3FC1F. These bytes are all 0xFF on 1-series.
 b = unknown constant: E0F8. 0b11100000 0b11111000. These bytes are EFF8 on the 3216.
-c = constant portion of serial: 3041374134
+c = constant portion of serial: 30 41 37 41 34
 s = non-constant portion of serial number
 
 t = temp. sensor cal
