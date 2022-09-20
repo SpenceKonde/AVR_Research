@@ -1,9 +1,9 @@
 # Bounties, or how to get free loot
 
-There are a number of known things, and an unknown number of unknown things, which knowledge of could be used to either assuage burning curiosity (in the case of the ATtiny828 ADC), or to expose new functionality (things like the fact that you can set DA/DB internal oscillator to 32, and the PLL multiplier up to 4x, not just 3x as the docs say). Transferring such valuable otherwise unknown information to me qualifies you for rewards.
+There are a number of known things, and an unknown number of unknown things, which knowledge of could be used to expose new functionality (things like the fact that you can set DA/DB internal oscillator to 32, and the PLL multiplier up to 4x, not just 3x as the docs say). Transferring such valuable otherwise unknown information to me qualifies you for rewards.
 
 ## Conditions:
-* The reward goes to someone who discovers undocumented functionalities and behavior in any modern AVR (or solves the mystery of the ATTiny828 ADC)
+* The reward goes to someone who discovers undocumented functionalities and behavior in any modern AVR (or solves the mystery of the ATTiny828 ADC - that's the only classic AVR undocumented feature with a bounty on it)
 * Unless stated otherwise where the specific bounty is discused (as is the case with the t828), the basic reward is an item in my tindie store featuring an impacted part, OR the equivalent price in bare boards (quantity discounts do apply, too). 
 * In order to qualify for this, your discovery must be
   * Previously unknown to me and undocumented
@@ -35,6 +35,7 @@ There are a number of known things, and an unknown number of unknown things, whi
 This is the case for:
 * The ATTiny828 ADC mystery (I swear, if you did the right things you could get a differential reading out of that thing....)
 * The meaning of the three non constant bytes in the signature block of modern tinyAVRs. They must mean something!
+* Fixing the ATTinyCore Virtual Boot erase bug in Optinooy (this isn't a case of information, but rather of actual code changes, making it distinctly different from the other bounties discussed here. But it will get you free stuff, and more than the usual reward. Currently, the bootloader erases pages as it rewrites them, and and stores the rjmp/jmp to the app where the EERDY vector is. That means that if the erase process is interrupted, neither the app nor the bootloader can be accessed. The required erase behavior is this: When the bootloader currently erases the first page, it must instea erase all pages, in decending order, starting from the page immediately before the the bootloader. The rjmp/jmp that jumps to the start of the application must be moved to the very end of the last page before the bootloader (like micronucleus does). See the issues listed for ATTinyCore for more information. If you have this working on either 4-byte vector (16k flash) or 2-byte vector (8 or less), that is sufficient, I can generalize it from there. 
 
 ## Restrictions
 * I (Spence Konde) have final say over whether something is useful and novel (I am open about what I know about the AVRs. There is no beahvior I'm aware of that's undocumented that i'm keeping secret, and if there was, it would be because it was a security issue, and I'd have related it to Microchip).
