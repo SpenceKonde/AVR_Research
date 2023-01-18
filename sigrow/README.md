@@ -4,7 +4,7 @@ On 21 ATtiny1624's being prepared for sale by tuning, sigrow contents were logge
 I've added a sketch that you can run on any tinyAVR or Dx-series (I think) which will spit out on USART0 at 115200 baud the full sigrow contents. It's all empty except for what the datasheet says. 
 We'll stick to the more interesting tinyAVR sigrow. 
 
-There is now a sketch on hwere that lets you gather dataq - and even send it to me! (that would be lovely, Just the CSV lines is fine, that contains all the knowledge it can extract).
+There is now a sketch on here that lets you gather data - and even send it to me! (that would be lovely, Just the CSV lines is fine, that contains all the knowledge it can extract).
 
 
 
@@ -58,7 +58,10 @@ The second one is harder to explain. With a larger sample size the correllation 
 ### What is the significance of the two constants? 
 One is not present at all on 1-series, while the other is very similar, but takes different value, and they have strange values with lots of 0's or 1's in a row. 
 
+They look almost like.... BITMASKS
+
 #### What values do they take on other parts?
+This is unknown to me. 
 
 ### What are the four mystery bytes? 
 They do not vary much, over a sample of 28 parts 1624's
@@ -73,11 +76,13 @@ There seems to be little correllation between them.
 
 There are two fields of 2 bytes each that are present on the 3216 that aren't present here (and likely the same is true of the rest of the 2-series and 1-series, but that remains to be verified)
 
-The first is right varies from 0x3E (62) to 0x47 (71) in the sample, suggestive of A variation around a value that is nominally 64. 
+And there are 4 single byte fields on the 2-series absent from the 1's 
+
+The first varies from 0x3E (62) to 0x47 (71) in the sample, suggestive of A variation around a value that is nominally 64. 
 
 The remaining 3 are completely opaque... What else varies between specimens? 
 
-Maximum frequency attained while overclocking before crash is known and was measured for the same parts, and we know they do testing on them to make sure they function at rated speeds. Perhaps something is written which relates to whether it is binned as an F-spec or N-spec? I'd love to know that if so! (On the Dx-series, where it matters more whether it's extended temperature range or not - 40 and even 48 MHz is within reach, and the E-spec overclocks better, I've turned to marking the parts with nail-polish, because there don't seem to be any marking differences) If that is related to these bytes though, it doesn't show in this data.
+Maximum frequency attained while overclocking before crash is known and was measured for the same parts, and we know they do testing on them to make sure they function at rated speeds. Perhaps something is written which relates to whether it is binned as an F-spec or N-spec? I'd love to know that if so! The extended temperature range overclocks better; on Dx-series - 40 and even 48 MHz is within reach, and the E-spec overclocks better. I've turned to marking the parts with nail-polish, because there don't seem to be any marking differences ) If that is related to these bytes though, it doesn't show in this data.
 
 For the constants, more data is required; I have a feeling that the E0 F8 pair select what features are enabled. 
 Imagine that the three versions were all manufactured from the same design and contain the same dies, and they just used different packages and numbers of pins. If that is the case, it should be possible to decode at least one of these values into a pincount... It also wouldn't be surprising that there would be the public-consumption ID (in the 3 byte device ID, the middle byte is the flash size, and the last is sequential in order of releases for each flash size) and an internal representation which said what groups of pins to turn on. If this is the case, you would see three values depending on pincount. It would probably be easier to implement if the there was a bit for each group of pins, ie, the 20 pin parts have 1 extra bit set 1, the 24 pin parts have 2, and the 8-pin, if they existed, one fewer - thus producing the pattern seen in those two values when represented in binary.
