@@ -2,7 +2,7 @@
 If clock source is crystal, future DxCore releases will auto-swap serial1. 
 
 Define CSV_ONLY to just get the final line for putting into a spreadsheet. 
-
+*/
 
 
 #include "util/delay.h"
@@ -30,8 +30,8 @@ void setup() {
     #endif
   }
   RSTCTRL.RSTFR = RSTCTRL.RSTFR;
-  #if (defined(DX_64_PINS) || (defined(DX_32_PINS)) ) //&& defined AZDUINO
-  Serial.swap(1);
+  #if (defined(DX_64_PINS) || (defined(DX_32_PINS)) ) && CLOCK_SOURCE == 2
+    Serial.swap(1);
   #endif
   
   Serial.begin(115200);
@@ -137,7 +137,7 @@ void setup() {
       Serial.printHex(ROWCONTENTS[0x2A]);
       Serial.printHex(ROWCONTENTS[0x2B]);
       Serial.printHex(ROWCONTENTS[0x2C]);
-      Serial.println()
+      Serial.println();
     #else
       Serial.print("MSB first (like humans) temp cal: ");
       Serial.printHex(ROWCONTENTS[0x04]);
@@ -147,24 +147,25 @@ void setup() {
       Serial.printHex(ROWCONTENTS[0x07]);
     #endif
     for (byte x = 0; x < 64; x++) {
-      if (!(x & 0x0F)) { // Every 16 bytesd, we print a line
+      if (!(x & 0x0F)) { // Every 16 bytes, we print a line
         Serial.println();
       } else if (!(x & 0x07)) { // and every 8 a space.
         Serial.print(' ');
       }
       Serial.printHex(ROWCONTENTS[x]);
     }
-        Serial.println();
+    Serial.println();
     #ifdef MEGATINYCORE 
       Serial.println("In 10 seconds we still start attempting see how good osc is." );
     #endif
   #endif
-  delay(2000);
+  delay(10000);
 }
 
 
 
 void loop() {
+  byte x = 0;
   #if defined(MEGATINYCORE)
     wdt_enable();
     
@@ -176,10 +177,9 @@ void loop() {
     _PROTECTED_WRITE(WDT_CTRLA, 0x0B);
     _PROTECTED_WRITE(CLKCTRL_MCLKCTRLB, 3); //prescale enabled, div by 4
     #if MEGATINYCORE_SERIES==2
-      byte x = (FUSE.OSCCFG == 1)? 0x60 : 0x40;
-      for (; x < 128; x++)  // 128 possible settings for 2-series
+      for (x = 0; x < 128; x++)  // 128 possible settings for 2-series
     #else
-      for (x = 0x15; x < 64; x++)   //  64 for 0/1-series
+      for (x = 0; x < 64; x++)   //  64 for 0/1-series
     #endif
     {
       wdt_reset();
@@ -232,7 +232,7 @@ void loop() {
           MaxCal=0x39;
           Serial.println("All oscillator speeds stable");
           if ((FUSE.OSCCFG == 1)) {
-            Serial.println("Not unexpected on 16 MHz osc.";)
+            Serial.println("Not unexpected on 16 MHz osc.");
           } else {
             Serial.println("Rare on 20 MHz");
           }
@@ -258,12 +258,6 @@ void loop() {
       Serial.print(MaxCal);
       Serial.print(",,,,,");
     }
-    #endif
-    for ( byte m = 0; m<64; m++) {
-      if (ROWCONTENTS[m] != 0xFF) {
-        Serial.print(ROWCONTENTS[m]);
-      }
-      Serial.print(',');
-  }
+  #endif
   while(1);
 }

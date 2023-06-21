@@ -1,12 +1,12 @@
 # Memory Map and Assembly Listing processors
-My cores generate memory maps and assembly listings when exporting compiled binaries. That's a very useful feature, if I do say so myself. 
+My cores generate memory maps and assembly listings when exporting compiled binaries. That's a very useful feature, if I do say so myself.
 
-## The memory map - the larger of the problems. 
-The memory maps would be a great tool for shrinking sketch size, but for one tiny little problem. The formatting is such perverse garbage that the human eye can't read them and you need to practically spell it out for Excel and other spreadsheet software to get them to import without mangling anything...  There are four major factors here. 
-1. nm assumes symbol names are at most 20 characters long, but even the toolchain itself ends up making many names much longer than this. Compounding that name issue is the fact that variables are names with the rather verbose titles, like "unsigned long" instead of uint32_t, and so on, making the names even longer. But it doesn't truncate the name, it just makes that cell of that column extend further, making it no longer align with the other columns... 
-2. nm outputs sizes and addresses in hex, as it should, but without any prefix to indicate that. This results in, say. Excel on default settings, interpreting the ones with no digits above 9 as decimal numbers, and the rest as strings, requiring difficult repair work. 
-3. The Line column is left blank, while the line number is instead appended to the file name. Furthermore, there's a tab instead of a `|` between the section and the filename, and avr-libc-supplied files have the whole longass filepath to a path that doesn't exist on the user's computer, and the files that do exist have such long path names that you either have wordwrap off and a horizontal scroll bar, or wordwrap on, amd interfere with reading of the table. 
-4. It contains a shedload of useless symbols that don't belong in a memory map - or at least not one aimed at Arduino-land. Do you need to see every vector listed, even though all but one of them are not defined and point to the same address? Not really - there's only one that matters. Do you need to see the ctors/dtors/trampolines section start and end addresses... when they're empty? Or `__temp_reg__`, `__zero_reg__` or the handful of registers located in the I/O space? None of that is useful when trying to diagnose a bloated sketch. 
+## The memory map - the larger of the problems.
+The memory maps would be a great tool for shrinking sketch size, but for one tiny little problem. The formatting is such perverse garbage that the human eye can't read them and you need to practically spell it out for Excel and other spreadsheet software to get them to import without mangling anything...  There are four major factors here.
+1. nm assumes symbol names are at most 20 characters long, but even the toolchain itself ends up making many names much longer than this. Compounding that name issue is the fact that variables are names with the rather verbose titles, like "unsigned long" instead of uint32_t, and so on, making the names even longer. But it doesn't truncate the name, it just makes that cell of that column extend further, making it no longer align with the other columns...
+2. nm outputs sizes and addresses in hex, as it should, but without any prefix to indicate that. This results in, say. Excel on default settings, interpreting the ones with no digits above 9 as decimal numbers, and the rest as strings, requiring difficult repair work.
+3. The Line column is left blank, while the line number is instead appended to the file name. Furthermore, there's a tab instead of a `|` between the section and the filename, and avr-libc-supplied files have the whole longass filepath to a path that doesn't exist on the user's computer, and the files that do exist have such long path names that you either have wordwrap off and a horizontal scroll bar, or wordwrap on, amd interfere with reading of the table.
+4. It contains a shedload of useless symbols that don't belong in a memory map - or at least not one aimed at Arduino-land. Do you need to see every vector listed, even though all but one of them are not defined and point to the same address? Not really - there's only one that matters. Do you need to see the ctors/dtors/trampolines section start and end addresses... when they're empty? Or `__temp_reg__`, `__zero_reg__` or the handful of registers located in the I/O space? None of that is useful when trying to diagnose a bloated sketch.
 
 ## clean_map.py
 clean_map.py is a (very) crude sketch that takes a .map file name it's only argument. It outputs a file of the same name, in the same location, wnding in .clean.map. Bear in mind that I do not know any python as you look at the code (that's the nice thing about python, you don't have to know what the hell you're doing to bang together crappy code to get a job done). You can see that I repeatedly use methods that I'd already used when better ones were available for the task, among doubtlessly many flaws. But I don't know python, so I don't know what those are. Feel free to PR a better version!
@@ -373,79 +373,79 @@ Program Space (flash):
 Name                                                |  Address | Class |  Type  |   Size   |  Section |  Line | File
 __vector_default                                    | 0x000200 |     W | NOTYPE |          |    .text |    61 | (gcc) gcrt1.S
 __vectors                                           | 0x000200 |     T | NOTYPE |          |    .text |    61 | (gcc) gcrt1.S
-mode10Name                                          | 0x0002f4 |     t | OBJECT | 0x000009 |    .text |       |  
-mode9Name                                           | 0x0002fd |     t | OBJECT | 0x000009 |    .text |       |  
-mode8Name                                           | 0x000306 |     t | OBJECT | 0x000009 |    .text |       |  
-mode7Name                                           | 0x00030f |     t | OBJECT | 0x000009 |    .text |       |  
-mode6Name                                           | 0x000318 |     t | OBJECT | 0x000009 |    .text |       |  
-mode5Name                                           | 0x000321 |     t | OBJECT | 0x000009 |    .text |       |  
-mode4Name                                           | 0x00032a |     t | OBJECT | 0x000009 |    .text |       |  
-mode3Name                                           | 0x000333 |     t | OBJECT | 0x000009 |    .text |       |  
-mode2Name                                           | 0x00033c |     t | OBJECT | 0x000009 |    .text |       |  
-mode1Name                                           | 0x000345 |     t | OBJECT | 0x000009 |    .text |       |  
-mode0Name                                           | 0x00034e |     t | OBJECT | 0x000009 |    .text |       |  
-mode7R2                                             | 0x000357 |     t | OBJECT | 0x000008 |    .text |       |  
-mode4R2                                             | 0x00035f |     t | OBJECT | 0x000008 |    .text |       |  
-mode5R1                                             | 0x000367 |     t | OBJECT | 0x000008 |    .text |       |  
-mode2R2                                             | 0x00036f |     t | OBJECT | 0x000008 |    .text |       |  
-mode1R1                                             | 0x000377 |     t | OBJECT | 0x000008 |    .text |       |  
-mode1R0                                             | 0x00037f |     t | OBJECT | 0x000008 |    .text |       |  
-pallete10                                           | 0x000387 |     t | OBJECT | 0x000008 |    .text |       |  
-pallete9                                            | 0x00038f |     t | OBJECT | 0x000008 |    .text |       |  
-pallete8                                            | 0x000397 |     t | OBJECT | 0x000008 |    .text |       |  
-pallete7                                            | 0x00039f |     t | OBJECT | 0x000008 |    .text |       |  
-pallete6                                            | 0x0003a7 |     t | OBJECT | 0x000008 |    .text |       |  
-pallete5                                            | 0x0003af |     t | OBJECT | 0x000008 |    .text |       |  
-pallete4                                            | 0x0003b7 |     t | OBJECT | 0x000008 |    .text |       |  
-pallete3                                            | 0x0003bf |     t | OBJECT | 0x000008 |    .text |       |  
-pallete2                                            | 0x0003c7 |     t | OBJECT | 0x000008 |    .text |       |  
-pallete1                                            | 0x0003cf |     t | OBJECT | 0x000008 |    .text |       |  
-pallete0                                            | 0x0003d7 |     t | OBJECT | 0x000008 |    .text |       |  
-mode0R0                                             | 0x0003df |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L5                                             | 0x0003e7 |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L4                                             | 0x0003ef |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L3                                             | 0x0003f7 |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L2                                             | 0x0003ff |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L1                                             | 0x000407 |     t | OBJECT | 0x000008 |    .text |       |  
-mode1L0                                             | 0x00040f |     t | OBJECT | 0x000008 |    .text |       |  
-mode0L2                                             | 0x000417 |     t | OBJECT | 0x000008 |    .text |       |  
-mode0L1                                             | 0x00041f |     t | OBJECT | 0x000008 |    .text |       |  
-mode0L0                                             | 0x000427 |     t | OBJECT | 0x000008 |    .text |       |  
-defaultValueRight                                   | 0x00042f |     t | OBJECT | 0x000058 |    .text |       |  
-defaultValueLeft                                    | 0x000487 |     t | OBJECT | 0x000058 |    .text |       |  
-getModeRatio(uint16_t)::__c                         | 0x0004df |     t | OBJECT | 0x00001a |    .text |       |  
-leftValues                                          | 0x0004f9 |     t | OBJECT | 0x000020 |    .text |       |  
-getModeColors(uint8_t*, uint8_t*, uint8_t*, uint32  | 0x000519 |     t | OBJECT | 0x00001a |    .text |       |  
-colorPallete                                        | 0x000533 |     t | OBJECT | 0x000108 |    .text |       |  
-maxValueLeft                                        | 0x00063b |     t | OBJECT | 0x000058 |    .text |       |  
-__vector_30::enc_states                             | 0x000693 |     t | OBJECT | 0x000010 |    .text |       |  
-setup::__c                                          | 0x0006a3 |     t | OBJECT | 0x00000f |    .text |       |  
-setup::__c                                          | 0x0006b2 |     t | OBJECT | 0x000012 |    .text |       |  
-handleUI()::__c                                     | 0x0006c4 |     t | OBJECT | 0x00000b |    .text |       |  
-handleUI()::__c                                     | 0x0006cf |     t | OBJECT | 0x000008 |    .text |       |  
-handleUI()::__c                                     | 0x0006d7 |     t | OBJECT | 0x00000b |    .text |       |  
-doAttractLCD()::__c                                 | 0x0006e2 |     t | OBJECT | 0x000010 |    .text |       |  
-doAttractLCD()::__c                                 | 0x0006f2 |     t | OBJECT | 0x000011 |    .text |       |  
-doAttractLCD()::__c                                 | 0x000703 |     t | OBJECT | 0x000011 |    .text |       |  
-doAttractLCD()::__c                                 | 0x000714 |     t | OBJECT | 0x00000d |    .text |       |  
-doAttractLCD()::__c                                 | 0x000721 |     t | OBJECT | 0x00000b |    .text |       |  
-doAttractLCD()::__c                                 | 0x00072c |     t | OBJECT | 0x00000e |    .text |       |  
-doAttractLCD()::__c                                 | 0x00073a |     t | OBJECT | 0x00000b |    .text |       |  
-doAttractLCD()::__c                                 | 0x000745 |     t | OBJECT | 0x000010 |    .text |       |  
-handleLCD()::__c                                    | 0x000755 |     t | OBJECT | 0x000004 |    .text |       |  
-handleLCD()::__c                                    | 0x000759 |     t | OBJECT | 0x000004 |    .text |       |  
-modeNames                                           | 0x00075d |     t | OBJECT | 0x000016 |    .text |       |  
-handleLCD()::__c                                    | 0x000773 |     t | OBJECT | 0x000005 |    .text |       |  
-maxSetting                                          | 0x000778 |     t | OBJECT | 0x000016 |    .text |       |  
-handleLCD()::__c                                    | 0x00078e |     t | OBJECT | 0x000005 |    .text |       |  
-modesR                                              | 0x000793 |     t | OBJECT | 0x0000b0 |    .text |       |  
-palleteNames                                        | 0x000843 |     t | OBJECT | 0x000016 |    .text |       |  
-modesL                                              | 0x000859 |     t | OBJECT | 0x0000b0 |    .text |       |  
-pulseBrightnessTable                                | 0x000909 |     t | OBJECT | 0x000040 |    .text |       |  
-colorCount                                          | 0x000949 |     t | OBJECT | 0x00000b |    .text |       |  
-maxValueRight                                       | 0x000954 |     t | OBJECT | 0x000058 |    .text |       |  
-_usart0_pins                                        | 0x0009ac |     t | OBJECT | 0x000009 |    .text |       |  
-__ctors_start                                       | 0x0009b6 |     T | NOTYPE |          |    .text |       |  
+mode10Name                                          | 0x0002f4 |     t | OBJECT | 0x000009 |    .text |       |
+mode9Name                                           | 0x0002fd |     t | OBJECT | 0x000009 |    .text |       |
+mode8Name                                           | 0x000306 |     t | OBJECT | 0x000009 |    .text |       |
+mode7Name                                           | 0x00030f |     t | OBJECT | 0x000009 |    .text |       |
+mode6Name                                           | 0x000318 |     t | OBJECT | 0x000009 |    .text |       |
+mode5Name                                           | 0x000321 |     t | OBJECT | 0x000009 |    .text |       |
+mode4Name                                           | 0x00032a |     t | OBJECT | 0x000009 |    .text |       |
+mode3Name                                           | 0x000333 |     t | OBJECT | 0x000009 |    .text |       |
+mode2Name                                           | 0x00033c |     t | OBJECT | 0x000009 |    .text |       |
+mode1Name                                           | 0x000345 |     t | OBJECT | 0x000009 |    .text |       |
+mode0Name                                           | 0x00034e |     t | OBJECT | 0x000009 |    .text |       |
+mode7R2                                             | 0x000357 |     t | OBJECT | 0x000008 |    .text |       |
+mode4R2                                             | 0x00035f |     t | OBJECT | 0x000008 |    .text |       |
+mode5R1                                             | 0x000367 |     t | OBJECT | 0x000008 |    .text |       |
+mode2R2                                             | 0x00036f |     t | OBJECT | 0x000008 |    .text |       |
+mode1R1                                             | 0x000377 |     t | OBJECT | 0x000008 |    .text |       |
+mode1R0                                             | 0x00037f |     t | OBJECT | 0x000008 |    .text |       |
+pallete10                                           | 0x000387 |     t | OBJECT | 0x000008 |    .text |       |
+pallete9                                            | 0x00038f |     t | OBJECT | 0x000008 |    .text |       |
+pallete8                                            | 0x000397 |     t | OBJECT | 0x000008 |    .text |       |
+pallete7                                            | 0x00039f |     t | OBJECT | 0x000008 |    .text |       |
+pallete6                                            | 0x0003a7 |     t | OBJECT | 0x000008 |    .text |       |
+pallete5                                            | 0x0003af |     t | OBJECT | 0x000008 |    .text |       |
+pallete4                                            | 0x0003b7 |     t | OBJECT | 0x000008 |    .text |       |
+pallete3                                            | 0x0003bf |     t | OBJECT | 0x000008 |    .text |       |
+pallete2                                            | 0x0003c7 |     t | OBJECT | 0x000008 |    .text |       |
+pallete1                                            | 0x0003cf |     t | OBJECT | 0x000008 |    .text |       |
+pallete0                                            | 0x0003d7 |     t | OBJECT | 0x000008 |    .text |       |
+mode0R0                                             | 0x0003df |     t | OBJECT | 0x000008 |    .text |       |
+mode1L5                                             | 0x0003e7 |     t | OBJECT | 0x000008 |    .text |       |
+mode1L4                                             | 0x0003ef |     t | OBJECT | 0x000008 |    .text |       |
+mode1L3                                             | 0x0003f7 |     t | OBJECT | 0x000008 |    .text |       |
+mode1L2                                             | 0x0003ff |     t | OBJECT | 0x000008 |    .text |       |
+mode1L1                                             | 0x000407 |     t | OBJECT | 0x000008 |    .text |       |
+mode1L0                                             | 0x00040f |     t | OBJECT | 0x000008 |    .text |       |
+mode0L2                                             | 0x000417 |     t | OBJECT | 0x000008 |    .text |       |
+mode0L1                                             | 0x00041f |     t | OBJECT | 0x000008 |    .text |       |
+mode0L0                                             | 0x000427 |     t | OBJECT | 0x000008 |    .text |       |
+defaultValueRight                                   | 0x00042f |     t | OBJECT | 0x000058 |    .text |       |
+defaultValueLeft                                    | 0x000487 |     t | OBJECT | 0x000058 |    .text |       |
+getModeRatio(uint16_t)::__c                         | 0x0004df |     t | OBJECT | 0x00001a |    .text |       |
+leftValues                                          | 0x0004f9 |     t | OBJECT | 0x000020 |    .text |       |
+getModeColors(uint8_t*, uint8_t*, uint8_t*, uint32  | 0x000519 |     t | OBJECT | 0x00001a |    .text |       |
+colorPallete                                        | 0x000533 |     t | OBJECT | 0x000108 |    .text |       |
+maxValueLeft                                        | 0x00063b |     t | OBJECT | 0x000058 |    .text |       |
+__vector_30::enc_states                             | 0x000693 |     t | OBJECT | 0x000010 |    .text |       |
+setup::__c                                          | 0x0006a3 |     t | OBJECT | 0x00000f |    .text |       |
+setup::__c                                          | 0x0006b2 |     t | OBJECT | 0x000012 |    .text |       |
+handleUI()::__c                                     | 0x0006c4 |     t | OBJECT | 0x00000b |    .text |       |
+handleUI()::__c                                     | 0x0006cf |     t | OBJECT | 0x000008 |    .text |       |
+handleUI()::__c                                     | 0x0006d7 |     t | OBJECT | 0x00000b |    .text |       |
+doAttractLCD()::__c                                 | 0x0006e2 |     t | OBJECT | 0x000010 |    .text |       |
+doAttractLCD()::__c                                 | 0x0006f2 |     t | OBJECT | 0x000011 |    .text |       |
+doAttractLCD()::__c                                 | 0x000703 |     t | OBJECT | 0x000011 |    .text |       |
+doAttractLCD()::__c                                 | 0x000714 |     t | OBJECT | 0x00000d |    .text |       |
+doAttractLCD()::__c                                 | 0x000721 |     t | OBJECT | 0x00000b |    .text |       |
+doAttractLCD()::__c                                 | 0x00072c |     t | OBJECT | 0x00000e |    .text |       |
+doAttractLCD()::__c                                 | 0x00073a |     t | OBJECT | 0x00000b |    .text |       |
+doAttractLCD()::__c                                 | 0x000745 |     t | OBJECT | 0x000010 |    .text |       |
+handleLCD()::__c                                    | 0x000755 |     t | OBJECT | 0x000004 |    .text |       |
+handleLCD()::__c                                    | 0x000759 |     t | OBJECT | 0x000004 |    .text |       |
+modeNames                                           | 0x00075d |     t | OBJECT | 0x000016 |    .text |       |
+handleLCD()::__c                                    | 0x000773 |     t | OBJECT | 0x000005 |    .text |       |
+maxSetting                                          | 0x000778 |     t | OBJECT | 0x000016 |    .text |       |
+handleLCD()::__c                                    | 0x00078e |     t | OBJECT | 0x000005 |    .text |       |
+modesR                                              | 0x000793 |     t | OBJECT | 0x0000b0 |    .text |       |
+palleteNames                                        | 0x000843 |     t | OBJECT | 0x000016 |    .text |       |
+modesL                                              | 0x000859 |     t | OBJECT | 0x0000b0 |    .text |       |
+pulseBrightnessTable                                | 0x000909 |     t | OBJECT | 0x000040 |    .text |       |
+colorCount                                          | 0x000949 |     t | OBJECT | 0x00000b |    .text |       |
+maxValueRight                                       | 0x000954 |     t | OBJECT | 0x000058 |    .text |       |
+_usart0_pins                                        | 0x0009ac |     t | OBJECT | 0x000009 |    .text |       |
+__ctors_start                                       | 0x0009b6 |     T | NOTYPE |          |    .text |       |
 __ctors_end                                         | 0x0009b8 |     T | NOTYPE |          |    .text |   230 | (gcc) gcrt1.S
 __init                                              | 0x0009b8 |     W | NOTYPE |          |    .text |   230 | (gcc) gcrt1.S
 __do_copy_data                                      | 0x0009c4 |     T | NOTYPE | 0x00001a |    .text |  2373 | (gcc) lib1funcs.S
@@ -523,8 +523,8 @@ seconddelay24                                       | 0x004220 |     t | NOTYPE 
 smallerdelay24                                      | 0x004222 |     t | NOTYPE |          |    .text |   525 | DxCore/megaavr/libraries/tinyNeoPixel_Static/tinyNeoPixel_Static.cpp
 nextbyte24                                          | 0x004224 |     t | NOTYPE |          |    .text |   525 | DxCore/megaavr/libraries/tinyNeoPixel_Static/tinyNeoPixel_Static.cpp
 random_r                                            | 0x0042ee |     T |   FUNC | 0x000092 |    .text |   429 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-random                                              | 0x004380 |     T |   FUNC | 0x000098 |    .text |       |  
-srandom                                             | 0x004418 |     T |   FUNC | 0x000012 |    .text |       |  
+random                                              | 0x004380 |     T |   FUNC | 0x000098 |    .text |       |
+srandom                                             | 0x004418 |     T |   FUNC | 0x000012 |    .text |       |
 __divmodsi4                                         | 0x00442a |     T | NOTYPE | 0x000028 |    .text |  1686 | (gcc) lib1funcs.S
 __divmodsi4_neg2                                    | 0x004442 |     t | NOTYPE |          |    .text |  1701 | (gcc) lib1funcs.S
 __divmodsi4_exit                                    | 0x004450 |     t | NOTYPE |          |    .text |  1709 | (gcc) lib1funcs.S
@@ -536,103 +536,103 @@ __udivmodsi4                                        | 0x004482 |     T | NOTYPE 
 __udivmodsi4_loop                                   | 0x00448e |     t | NOTYPE |          |    .text |  1646 | (gcc) lib1funcs.S
 __udivmodsi4_ep                                     | 0x0044a8 |     t | NOTYPE |          |    .text |  1660 | (gcc) lib1funcs.S
 __umulhisi3                                         | 0x0044c6 |     T | NOTYPE | 0x00001e |    .text |   564 | (gcc) lib1funcs.S
-__subsf3                                            | 0x0044e4 |     T |   FUNC | 0x00000a |    .text |       |  
-__addsf3                                            | 0x0044e6 |     T | NOTYPE |          |    .text |       |  
-__addsf3x                                           | 0x004508 |     T |   FUNC | 0x0000cc |    .text |       |  
-__cmpsf2                                            | 0x0045ae |     T |   FUNC | 0x000008 |    .text |       |  
-__eqsf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |  
-__lesf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |  
-__ltsf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |  
-__nesf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |  
-__divsf3                                            | 0x0045b6 |     T |   FUNC | 0x000004 |    .text |       |  
-__divsf3x                                           | 0x0045d0 |     T |   FUNC | 0x0000dc |    .text |       |  
-__divsf3_pse                                        | 0x0045d4 |     T | NOTYPE |          |    .text |       |  
-__fixunssfsi                                        | 0x004686 |     T |   FUNC | 0x000058 |    .text |       |  
-__floatunsisf                                       | 0x0046de |     T |   FUNC | 0x00007a |    .text |       |  
-__floatsisf                                         | 0x0046e2 |     T | NOTYPE |          |    .text |       |  
-__fp_cmp                                            | 0x004758 |     T |   FUNC | 0x000048 |    .text |       |  
-__fp_inf                                            | 0x0047a0 |     T |   FUNC | 0x00000c |    .text |       |  
-__fp_nan                                            | 0x0047ac |     T |   FUNC | 0x000006 |    .text |       |  
-__fp_pscA                                           | 0x0047b2 |     T |   FUNC | 0x00000e |    .text |       |  
-__fp_pscB                                           | 0x0047c0 |     T |   FUNC | 0x00000e |    .text |       |  
-__fp_round                                          | 0x0047ce |     T |   FUNC | 0x000022 |    .text |       |  
-__fp_split3                                         | 0x0047f0 |     T |   FUNC | 0x000044 |    .text |       |  
-__fp_splitA                                         | 0x004800 |     T | NOTYPE |          |    .text |       |  
-__fp_zero                                           | 0x004834 |     T |   FUNC | 0x00000e |    .text |       |  
-__fp_szero                                          | 0x004836 |     T | NOTYPE |          |    .text |       |  
-__gesf2                                             | 0x004842 |     T |   FUNC | 0x000008 |    .text |       |  
-__gtsf2                                             | 0x004842 |     T | NOTYPE |          |    .text |       |  
-__mulsf3                                            | 0x00484a |     T |   FUNC | 0x000004 |    .text |       |  
-__mulsf3x                                           | 0x004862 |     T |   FUNC | 0x0000d2 |    .text |       |  
-__mulsf3_pse                                        | 0x004866 |     T | NOTYPE |          |    .text |       |  
-__unordsf2                                          | 0x004910 |     T |   FUNC | 0x000008 |    .text |       |  
+__subsf3                                            | 0x0044e4 |     T |   FUNC | 0x00000a |    .text |       |
+__addsf3                                            | 0x0044e6 |     T | NOTYPE |          |    .text |       |
+__addsf3x                                           | 0x004508 |     T |   FUNC | 0x0000cc |    .text |       |
+__cmpsf2                                            | 0x0045ae |     T |   FUNC | 0x000008 |    .text |       |
+__eqsf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |
+__lesf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |
+__ltsf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |
+__nesf2                                             | 0x0045ae |     T | NOTYPE |          |    .text |       |
+__divsf3                                            | 0x0045b6 |     T |   FUNC | 0x000004 |    .text |       |
+__divsf3x                                           | 0x0045d0 |     T |   FUNC | 0x0000dc |    .text |       |
+__divsf3_pse                                        | 0x0045d4 |     T | NOTYPE |          |    .text |       |
+__fixunssfsi                                        | 0x004686 |     T |   FUNC | 0x000058 |    .text |       |
+__floatunsisf                                       | 0x0046de |     T |   FUNC | 0x00007a |    .text |       |
+__floatsisf                                         | 0x0046e2 |     T | NOTYPE |          |    .text |       |
+__fp_cmp                                            | 0x004758 |     T |   FUNC | 0x000048 |    .text |       |
+__fp_inf                                            | 0x0047a0 |     T |   FUNC | 0x00000c |    .text |       |
+__fp_nan                                            | 0x0047ac |     T |   FUNC | 0x000006 |    .text |       |
+__fp_pscA                                           | 0x0047b2 |     T |   FUNC | 0x00000e |    .text |       |
+__fp_pscB                                           | 0x0047c0 |     T |   FUNC | 0x00000e |    .text |       |
+__fp_round                                          | 0x0047ce |     T |   FUNC | 0x000022 |    .text |       |
+__fp_split3                                         | 0x0047f0 |     T |   FUNC | 0x000044 |    .text |       |
+__fp_splitA                                         | 0x004800 |     T | NOTYPE |          |    .text |       |
+__fp_zero                                           | 0x004834 |     T |   FUNC | 0x00000e |    .text |       |
+__fp_szero                                          | 0x004836 |     T | NOTYPE |          |    .text |       |
+__gesf2                                             | 0x004842 |     T |   FUNC | 0x000008 |    .text |       |
+__gtsf2                                             | 0x004842 |     T | NOTYPE |          |    .text |       |
+__mulsf3                                            | 0x00484a |     T |   FUNC | 0x000004 |    .text |       |
+__mulsf3x                                           | 0x004862 |     T |   FUNC | 0x0000d2 |    .text |       |
+__mulsf3_pse                                        | 0x004866 |     T | NOTYPE |          |    .text |       |
+__unordsf2                                          | 0x004910 |     T |   FUNC | 0x000008 |    .text |       |
 __mulsi3                                            | 0x004918 |     T | NOTYPE | 0x00001e |    .text |   648 | (gcc) lib1funcs.S
 __udivmodhi4                                        | 0x004936 |     T | NOTYPE | 0x000028 |    .text |  1408 | (gcc) lib1funcs.S
 __udivmodhi4_loop                                   | 0x00493e |     t | NOTYPE |          |    .text |  1413 | (gcc) lib1funcs.S
 __udivmodhi4_ep                                     | 0x00494c |     t | NOTYPE |          |    .text |  1421 | (gcc) lib1funcs.S
-abort                                               | 0x004970 |     T |   FUNC | 0x000008 |    .text |       |  
+abort                                               | 0x004970 |     T |   FUNC | 0x000008 |    .text |       |
 __stop_program                                      | 0x00497a |     t | NOTYPE |          |    .text |  2280 | (gcc) lib1funcs.S
-__data_load_start                                   | 0x00497c |     A | NOTYPE |          |    *ABS* |       |  
-__data_load_end                                     | 0x004ac8 |     A | NOTYPE |          |    *ABS* |       |  
+__data_load_start                                   | 0x00497c |     A | NOTYPE |          |    *ABS* |       |
+__data_load_end                                     | 0x004ac8 |     A | NOTYPE |          |    *ABS* |       |
 
 Data Space (SRAM):
 Name                           |  Address | Class |  Type  |   Size   |  Section |  Line | File
-__vector_30::EncR_Prev         | 0x804000 |     d | OBJECT | 0x000001 |    .data |       |  
-__vector_30::EncL_Prev         | 0x804001 |     d | OBJECT | 0x000001 |    .data |       |  
+__vector_30::EncR_Prev         | 0x804000 |     d | OBJECT | 0x000001 |    .data |       |
+__vector_30::EncL_Prev         | 0x804001 |     d | OBJECT | 0x000001 |    .data |       |
 pktLength                      | 0x804002 |     d | OBJECT | 0x000001 |    .data |    77 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
-handleUI()::lastBtnState       | 0x804003 |     d | OBJECT | 0x000001 |    .data |       |  
-handleUI()::lastBtnBounceState | 0x804004 |     d | OBJECT | 0x000001 |    .data |       |  
-handleLCD()::drift2_colors     | 0x804005 |     d | OBJECT | 0x000001 |    .data |       |  
+handleUI()::lastBtnState       | 0x804003 |     d | OBJECT | 0x000001 |    .data |       |
+handleUI()::lastBtnBounceState | 0x804004 |     d | OBJECT | 0x000001 |    .data |       |
+handleLCD()::drift2_colors     | 0x804005 |     d | OBJECT | 0x000001 |    .data |       |
 UIChanged                      | 0x804006 |     d | OBJECT | 0x000001 |    .data |   198 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-next                           | 0x804007 |     d | OBJECT | 0x000004 |    .data |       |  
+next                           | 0x804007 |     d | OBJECT | 0x000004 |    .data |       |
 digital_pin_to_timer           | 0x80400b |     d | OBJECT | 0x000029 |    .data |   482 | DxCore/megaavr/variants/48pin-standard/pins_arduino.h
 digital_pin_to_bit_position    | 0x804034 |     d | OBJECT | 0x000029 |    .data |   377 | DxCore/megaavr/variants/48pin-standard/pins_arduino.h
-vtable for UartClass           | 0x80405d |     d | OBJECT | 0x00001a |    .data |       |  
+vtable for UartClass           | 0x80405d |     d | OBJECT | 0x00001a |    .data |       |
 digital_pin_to_bit_mask        | 0x804077 |     d | OBJECT | 0x000029 |    .data |   430 | DxCore/megaavr/variants/48pin-standard/pins_arduino.h
 digital_pin_to_port            | 0x8040a0 |     d | OBJECT | 0x000029 |    .data |   331 | DxCore/megaavr/variants/48pin-standard/pins_arduino.h
-vtable for hd44780             | 0x8040c9 |     d | OBJECT | 0x000016 |    .data |       |  
-vtable for hd44780_pinIO       | 0x8040df |     d | OBJECT | 0x000016 |    .data |       |  
-__bss_start                    | 0x80414c |     B | NOTYPE |          |     .bss |       |  
-__data_end                     | 0x80414c |     D | NOTYPE |          |    .data |       |  
+vtable for hd44780             | 0x8040c9 |     d | OBJECT | 0x000016 |    .data |       |
+vtable for hd44780_pinIO       | 0x8040df |     d | OBJECT | 0x000016 |    .data |       |
+__bss_start                    | 0x80414c |     B | NOTYPE |          |     .bss |       |
+__data_end                     | 0x80414c |     D | NOTYPE |          |    .data |       |
 gotMessage                     | 0x80414c |     b | OBJECT | 0x000001 |     .bss |    74 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
 lastRFMsgAt                    | 0x80414d |     b | OBJECT | 0x000004 |     .bss |    78 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
 lastEncPins                    | 0x804151 |     b | OBJECT | 0x000001 |     .bss |   193 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 lastUserAction                 | 0x804152 |     b | OBJECT | 0x000004 |     .bss |   204 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-__vector_30::EncR_Val          | 0x804156 |     b | OBJECT | 0x000001 |     .bss |       |  
-__vector_30::EncL_Val          | 0x804157 |     b | OBJECT | 0x000001 |     .bss |       |  
+__vector_30::EncR_Val          | 0x804156 |     b | OBJECT | 0x000001 |     .bss |       |
+__vector_30::EncL_Val          | 0x804157 |     b | OBJECT | 0x000001 |     .bss |       |
 dataIn                         | 0x804158 |     b | OBJECT | 0x000001 |     .bss |    76 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
 rxBuffer                       | 0x804159 |     b | OBJECT | 0x000020 |     .bss |    79 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
 bitnum                         | 0x804179 |     b | OBJECT | 0x000001 |     .bss |    72 | /Users/Spence/AppData/Local/Temp/arduino_build_761867/sketch/LightCtrl_RevE.h
-__vector_44::lasttime          | 0x80417a |     b | OBJECT | 0x000004 |     .bss |       |  
+__vector_44::lasttime          | 0x80417a |     b | OBJECT | 0x000004 |     .bss |       |
 timer_millis                   | 0x80417e |     b | OBJECT | 0x000004 |     .bss |    58 | DxCore/megaavr/cores/dxcore/wiring.c
-handleUI()::lastPressAt        | 0x804182 |     b | OBJECT | 0x000004 |     .bss |       |  
-handleUI()::lastBtnAt          | 0x804186 |     b | OBJECT | 0x000004 |     .bss |       |  
+handleUI()::lastPressAt        | 0x804182 |     b | OBJECT | 0x000004 |     .bss |       |
+handleUI()::lastBtnAt          | 0x804186 |     b | OBJECT | 0x000004 |     .bss |       |
 currentSettingRight            | 0x80418a |     b | OBJECT | 0x000001 |     .bss |   195 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 currentSettingLeft             | 0x80418b |     b | OBJECT | 0x000001 |     .bss |   194 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-handleLCD()::attractmode       | 0x80418c |     b | OBJECT | 0x000001 |     .bss |       |  
-handleLCD()::lastInputAt       | 0x80418d |     b | OBJECT | 0x000004 |     .bss |       |  
+handleLCD()::attractmode       | 0x80418c |     b | OBJECT | 0x000001 |     .bss |       |
+handleLCD()::lastInputAt       | 0x80418d |     b | OBJECT | 0x000004 |     .bss |       |
 lastRFUpdateAt                 | 0x804191 |     b | OBJECT | 0x000004 |     .bss |   199 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-updatePatternFade()::bright    | 0x804195 |     b | OBJECT | 0x000001 |     .bss |       |  
-updatePatternDots2()::b        | 0x804196 |     b | OBJECT | 0x000001 |     .bss |       |  
-updatePatternDots2()::g        | 0x804197 |     b | OBJECT | 0x000001 |     .bss |       |  
-updatePatternDots2()::r        | 0x804198 |     b | OBJECT | 0x000001 |     .bss |       |  
+updatePatternFade()::bright    | 0x804195 |     b | OBJECT | 0x000001 |     .bss |       |
+updatePatternDots2()::b        | 0x804196 |     b | OBJECT | 0x000001 |     .bss |       |
+updatePatternDots2()::g        | 0x804197 |     b | OBJECT | 0x000001 |     .bss |       |
+updatePatternDots2()::r        | 0x804198 |     b | OBJECT | 0x000001 |     .bss |       |
 scratch                        | 0x804199 |     b | OBJECT | 0x0005dc |     .bss |   211 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 frameNumber                    | 0x804775 |     b | OBJECT | 0x000004 |     .bss |   212 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 currentValueLeft               | 0x804779 |     b | OBJECT | 0x000008 |     .bss |   196 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 currentValueRight              | 0x804781 |     b | OBJECT | 0x000008 |     .bss |   197 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 currentMode                    | 0x804789 |     b | OBJECT | 0x000001 |     .bss |   201 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 lastFrameAt                    | 0x80478a |     b | OBJECT | 0x000004 |     .bss |   209 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-loop::updated                  | 0x80478e |     b | OBJECT | 0x000001 |     .bss |       |  
+loop::updated                  | 0x80478e |     b | OBJECT | 0x000001 |     .bss |       |
 Serial0                        | 0x80478f |     b | OBJECT | 0x000097 |     .bss |    62 | DxCore/megaavr/cores/dxcore/UART0.cpp
 pixels                         | 0x804826 |     b | OBJECT | 0x0005dc |     .bss |   210 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 leds                           | 0x804e02 |     b | OBJECT | 0x000013 |     .bss |   213 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
 lcd                            | 0x804e15 |     b | OBJECT | 0x000029 |     .bss |    11 | /Users/Spence/Documents/Electronics/DriftAnimate/DriftAnimate_V2/DriftAnimate_V2.ino
-__bss_end                      | 0x804e3e |     B | NOTYPE |          |     .bss |       |  
-_end                           | 0x804e3e |     N | NOTYPE |          | .comment |       |  
+__bss_end                      | 0x804e3e |     B | NOTYPE |          |     .bss |       |
+_end                           | 0x804e3e |     N | NOTYPE |          | .comment |       |
 
 ```
 
-Much better, no? 
+Much better, no?
 
 ## Assembly listings
 The assembly listings are a lot more usable (unless using Optiboot board def with DxCore, but that's a separate issue)
@@ -640,9 +640,9 @@ There is are only two problems here, first, it sometimes expresses offsets and a
 ```text
 "40a:	90 93 01 0a 	sts	0x0A01, r25	; 0x800a01 <__TEXT_REGION_LENGTH__+0x7e0a01>
 ```
-Now, that's a peripheral control register (being betweeen 0x003F and 0x103F - while it'd be sweet to know that it relates to TCA - just showing something like <Peripheral register 0x0A0> would be a lot better than that. And really, it wouldn't even be that hard to make it do like <TCA0 + 0x0001> (the trick is that they aren't changing where they put the peripherals on modern AVRs - on any post-2016 AVR, 0x0A00 to 0x0A40 is TCA0). Sometimes the values are nonsensical. "`__LOCK_REGIOMN_LENGTH__` which is 0x400 apparently. Which means it makes loads of sense to express the destination of that relative jump that lands at 0x520 as `__LOCK_REGION_LENGTH__ + 0x120` There ain't no section of memory on those things that has any clearly deliniated area 1024 bytes in size! Where did they get 0x400 from. Unless the lock region is everything from the NVMCTRL registers starting at 0x1000 to the EEPROM at 0x3400? *shrug* Whatever the case may be, it's not of practical use. These should ideally give the offset from the peripheral if they're under 0x1040, and if they're in RAM and got a useless offset, it should be replaced with a useful one if possible. Addresses in flash are the hardest, since ideally you'd want to have it find the destination, then iterate upwards until it found a line with no spaces ending in `()`, then move down until you found the first instruction, and subtract that from the destination yielding the output that avr-objdump is supposed to.
+Now, that's a peripheral control register (being betweeen 0x003F and 0x103F - while it'd be sweet to know that it relates to TCA - just showing something like <Peripheral register 0x0A0> would be a lot better than that. And really, it wouldn't even be that hard to make it do like <TCA0 + 0x0001> (the trick is that they aren't changing where they put the peripherals on modern AVRs - on any post-2016 AVR, 0x0A00 to 0x0A40 is TCA0). Sometimes the values are nonsensical. "`__LOCK_REGION_LENGTH__` which is 0x400 apparently, so it little sense to express the destination of that relative jump that lands at 0x520 as `__LOCK_REGION_LENGTH__ + 0x120` There ain't no section of memory on those things that has any clearly deliniated area 1024 bytes in size! Where did they get 0x400 from. Unless the lock region is everything from the NVMCTRL registers starting at 0x1000 to the EEPROM at 0x3400? *shrug* Whatever the case may be, it's not of practical use. These should ideally give the offset from the peripheral if they're under 0x1040, and if they're in RAM and got a useless offset, it should be replaced with a useful one if possible. Addresses in flash are the hardest, since ideally you'd want to have it find the destination, then iterate upwards until it found a line with no spaces ending in `()`, then move down until you found the first instruction, and subtract that from the destination yielding the output that avr-objdump is supposed to.
 
-The other issue is more of a nitpick - but everything that comes from the avr-gcc .S files get the linenumber included for every single instruction. 
+The other issue is more of a nitpick - but everything that comes from the avr-gcc .S files get the linenumber included for every single instruction.
 How is this:
 ```
 000000c2 <__do_copy_data>:
@@ -745,5 +745,6 @@ __do_clear_bss():
 ```
 But the first one is harder to read - and assembly listings were too easy to read right?
 
-I would also like to make it count up how many times each instruction was used (ie, ld was used 50 times, ldd was used 60 times, std was used 102 times and so on), and what variation (eg, ST X, ST Y+, and so on. Then I'll try to convince the masses (you all) to run it on your code, and send me the stats on code you've written (or code others have written, just keep it separate) so I can  do statistics on them, and see what instructions are used most and least, and how "clumpy" different instructions are (indications from 2 test sketchs are that instruction usage is likely to be very clumpy - with some code using certain instructions extensively, and others not touching them. This is mostly for curiosity, and the sake of pretty graphs... 
-The real prize would be to get a big fat wad of listings *written without Arduino or anything that uses Arduino cores*, so we could see how the general inefficiency of Arduino manifests in the instruction usage. My guess is push and pop will be way overused on Arduino sketches. Even doing just 2 cketches answered my idle question "So AVRxt does push and ST faster, but LDS slower. I run into that LDS thing a lot when writing assembly, was that penalty really worth it? (answer: yes, by a landslide. LDS is overrepresented in assembly that humans set eyes on, and is actually rather rare in the wild; while the most common instructions are push, pop and std, which are underrepresented in such code.
+In fact, I'd argue that for any .S file, you might as well cut out the filename altogether (if you're using this tool, you probably don't even need to see the listings for those functions by now for general processing since you typically aren't going to be able to see it without a major archeological excavation, and all you would find is the same assembly you see here.
+
+tameListings.py is a crude attempt at doing some of this. It's not ready for prime time, but it's a start.
