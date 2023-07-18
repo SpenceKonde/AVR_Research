@@ -162,3 +162,11 @@ for x in isnbuckets:
     for y in isnbuckets[x]:
         line = line+","+str(y)
     print(line,file = f5)
+mdfile = "stats/totals.md"
+f6=open(mdfile,"w")
+print("| Instruct | count |",file = f6)
+for x in isnbuckets:
+    line=x
+    for y in isnbuckets[x]:
+        line = "| "+line.rjust(8)+" | "+str(y).rjust(5);
+print(line,file = f6)

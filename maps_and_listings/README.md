@@ -748,3 +748,10 @@ But the first one is harder to read - and assembly listings were too easy to rea
 In fact, I'd argue that for any .S file, you might as well cut out the filename altogether (if you're using this tool, you probably don't even need to see the listings for those functions by now for general processing since you typically aren't going to be able to see it without a major archeological excavation, and all you would find is the same assembly you see here.
 
 tameListings.py is a crude attempt at doing some of this. It's not ready for prime time, but it's a start.
+
+## tallycount.py - Count the number of times an instruction is used
+tallycount.py runs processes every .lst in the directory, creates a subdirectory called stats, containing a file for each listing processed, which counts up how often each instruction is called. and a file called totals.csv with the totals for all files.
+
+This was used to create a few of [these exceptional and unremarkable examples](isncount.md), based on normal and whackjob test code I had lying around.
+
+It now also creates a totals.md file pre-formatted appropriately for a github markdown documeny
