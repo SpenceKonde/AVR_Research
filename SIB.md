@@ -75,7 +75,7 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | t212/4/6,412/4 |  Please contribute            |tinyAVR| P:0 | D:0 | 3M2 |  *A* |  59B14 | 0 |
 | t212/4/6,412/4 | `tinyAVR P:0D:0-3M2 (01.59B14.0)`|tinyAVR| P:0 | D:0 | 3M2 | **B**|  59B14 | 0 |
 | t212/4/6,412/4 |  Please contribute            |tinyAVR| P:0 | D:? | 3M2 | **C**|  59B14 | 0 |
-| t814/6/7,417 || Please contribute              |tinyAVR| P:0 | D:? | 3M2 |   A  |  59B?? | 0 |
+| t814/6/7,417 | Please contribute              |tinyAVR| P:0 | D:? | 3M2 |   A  |  59B?? | 0 |
 | t1614/6/7  | Please contribute                 |tinyAVR| P:0 | D:? | 3M2 |  *A* |  59B?? | 0 |
 | t1614/6/7  | Please contribute                 |tinyAVR| P:0 | D:? | 3M2 | **B**|  59B?? | 0 |
 | t3216/7    | Please contribute                 |tinyAVR| P:0 | D:? | 3M2 |  *A* |  59B?? | 0 |
@@ -83,6 +83,7 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | t82x/t42x  | Please contribute                 |tinyAVR| P:0 | D:1 | 3M2 |   A  |  59B?? | 0 |
 | t1624/6/7  | `tinyAVR P:0D:1-3M2 (04.59B0D.0)` |tinyAVR| P:0 | D:1 | 3M2 |   E  |  59B0D | 0 |
 | t3226/3227 | `tinyAVR P:0D:1-3M2 (00.59B0E.0)` |tinyAVR| P:0 | D:1 | 3M2 |   A  |  59B0E | 0 |
+
 
 Pymcuprog lists the P:# as the version of the NVM controller it uses (P for programming), and the D:# is the version of the on-chip debugger (consistent with the datasheet) and the 3M2 is in reference to the "PDI oscillator" (does that mean the base clock speed is apx. 32 MHz? It's plausible, as the options we have for clock speed are 4, 8, 16, and 32 MHz, which would be what you'd naturally do if you were willing to allocate two bits to representing it, and were starting with a 32 MHz clock, right?). Then we get to the parens containing likely the most interesting information.... First, there's the die rev right there, without having to dig for it! Second, there's a cryptic 5 hex-digit value. I belive this identifies the die design. Devices widely belived to share a die all give the same value here. If this is the case, it jumps out that there are two bases - KV00 (the Dx-series, ie, good parts) and 59___, the Ex-series/tinyAVR (the generally lower end parts).
 
@@ -97,8 +98,8 @@ It appears that Dx-series parts have identifiers starting with KV0, and tinyAVR 
   * The KEY to enable nvm programming is, uh, `NVMProg `
   * The KEY to enable USERROW programming of a locked chip is... `NVMUs&te` (the `&` is probably used as an abbreviation symbol)
   * The KEY to perform a chip erase to unlock a chip is `NVMErase`
-  * These are some very creative people as you can see. Presumably there's also an `OCDStart` or something like that to start the on-chip debug interface, and likely there's something like `NVMSi&te` (NVM Si~gnature Wri~te)
-* Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters. 
+  * These are some very creative people as you can see. Presumably there's also an `OCDStart` or something like that to start the on-chip debug interface, and likely there's something like `NVMSi&te` (NVM Si~gnature Wri~te) that they use during factory cal to set the calibration for the parts and tell the parts what they are (as we know, they use the same die across many parts). I have to assume it has a way to do the digital equivalent of putting the w
+* Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters.
 * Cases where we know the P (always), D (non- 0/1), or OSC value (always 3M2) have been filled in, as have cases where there isnt any question about the what the family will be (so some DA/DB are left as ?'s, since they are inconsistent in how they justify the letters in "AVR"
   * `    AVR` - Padding on the left (and "coincidentally" the same length as the text that was there, as if they'd just changed the lessers to ascii 0x20's. 
   * `AVR    ` - Probably what is intended
@@ -106,5 +107,6 @@ It appears that Dx-series parts have identifiers starting with KV0, and tinyAVR 
 * NVM numbers are 0: paged write without NRWW and fully mapped flash. 1: Not used (if I was guessing, I'd say they were toying with the possibility of releasing a device with paged writes, no RWW/NRWW, but with too much flash to fit it all in the data space) 2: AVR Dx-series word writes (the good NVMCTRL), 3: AVR Ex-series (paged writes with NRWW/RWW support) 
 
 ## Help understand these by submitting of the strings like the ones in the second column. 
-It will be printed by SerialUPDI when any programming atempt is made and verbose outout in, and will show info for the connected target chip) (so you can test thiserialUPDI from the currently connected target (so you can select, say, a tiny412, and then go through the whole AVR DX series or something attempting to program and getting that string in the second column above - al I need is the string and the part number of the device connected)
-To gather the data, it is sufficient to attempt a SerialUPDI upload to a correctly wired chip that is not the one you have selected in the IDE - the IDE will always print this in verbose mode before it gets to where it rejects a programming attempt targeting a different part
+It will be printed by SerialUPDI when any programming atempt is made and verbose outout in, and will show info for the connected chip, (so you can read the SIB without writing anything by selecting a chip that doesn't match the chip you connect and then tryingto program it with verbose mode enabled using SerialUPDI. 
+
+To gather the data, it is sufficient to attempt a SerialUPDI upload to a correctly wired chip that is not the one you have selected in the IDE - the IDE will always print the full SIB (though it may error after that)
