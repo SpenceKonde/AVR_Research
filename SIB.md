@@ -38,7 +38,7 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | AVR32DD32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
 | AVR64DD14  | `AVR     P:2D:1-3M2 (A1.KV00U.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <---,-- Same presumed die
 | AVR64DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR64DD28  | 'AVR     P:2D:1-3M2 (A3.KV00K.0)  | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <---,-- Same presumed die, same 5 character code
+| AVR64DD28  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <---,-- Same presumed die, same 5 character code
 | AVR64DD32  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <--/
 | AVR32DB48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | AVR32DB32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die.
