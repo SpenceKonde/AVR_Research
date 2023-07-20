@@ -58,8 +58,8 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | AVR128DB28 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | AVR128DA64 | `AVR     P:2D:1-3M2 (A6.KV001.0)` | AVR   | P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <---,-- Same presumed die
 | AVR128DA48 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 | <--/
-| AVR128DA32 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |    AVR| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--- WTF on justification of the AVR field?
-| AVR128DA32 | `    AVR P:2D:1-3M2 (A7.KV001.0)` |    AVR| P:2 | D:1 | 3M2 |  A7  |  KV001 | 0 | <--- A6 and A7 silicon coexists inthe wild!
+| AVR128DA32 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--- WTF on justification of the AVR field?
+| AVR128DA32 | `    AVR P:2D:1-3M2 (A7.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A7  |  KV001 | 0 | <--- A6 and A7 silicon coexists inthe wild!
 | AVR128DA28 |  Please contribute                | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | ATmega808  |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   ?  |  59B2? | 0 | 
 | ATmega809  |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   ?  |  59B2? | 0 |
