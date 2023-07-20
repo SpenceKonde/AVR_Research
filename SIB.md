@@ -1,25 +1,43 @@
-  During UPDI programming, the programmer asks the chip for it's System Information Block. The chip responds with either 8 or 16, or 32 bytes of data, depending on how much the programmer asked for. Only the 8 and 16 byte forms are documented - but pymcuprog knows about a way to get 32 bytes of data. Here are some example strings:
+# Contents of the System Information Block (SIB)
+
+There is more than one way to identify a target device. Reading the device signature row is one way (and gives more and different information, and is unique per specimen). The SIB is an even cruder way, because a UPDI programmer **might not know how to access the sigrow** in the future, when significant changes are next made to the protocol - the programmer needs a way to find out what version of the NVM controller it is using, and what version of the On-Chip Debugger it's using, and what speed the UPDI oscillator is derived from)
+During UPDI programming, the programmer asks the chip for it's System Information Block. The chip responds with either 8 or 16, or 32 bytes of data, depending on how much the programmer asked for. Only the 8 and 16 byte forms are documented - but pymcuprog knows about a way to get 32 bytes of data. There are a few bytes of entropy content contained in these additional 128 bits: there is the die rev (1 byte, but represented as 2 bytes of ascii characters), there is an internal manufacturer product code that can be used to split the AVRs into two broad groups, and one field of unknown semantics 1 character in length nominally storing a 0. Possibly this is reserved for a "v 2.0", something that would be to one of these modern AFe. Here are some example strings:
+
 | Part       | SIB                               | Family| NVM | OCD | OSC | Rev  |  CODE  | ? | Note
 |------------|-----------------------------------|-------|-----|-----|-----|------|--------|---|-----
-| AVR8EA32   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR8EA28   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR8EA48   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR16EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR16EA28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR16EA48  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR32EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  B1  |  KV00? | 0 |
-| AVR32EA28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  B1  |  KV00? | 0 |
-| AVR32EA48  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 | <---- This implies (supported by observations like the 20/16 MHz oscillator and other limitations) that the EA is closer to a tinyAVR than a Dx-series. That it apparently underwent a *major* die rev sort of implies that development did not progress as smoothly as imagined. Timing wise, I think they had to have the Ex in progress when the 2-series was released. 
-| AVR64EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR64EA28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  KV00? | 0 |
-| AVR64DD14  | `AVR     P:2D:1-3M2 (A1.KV00U.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <---,-- Same presumed die
-| AVR64DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR8EB32   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB28   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB20   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB14   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB20  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB14  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB20  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB14  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EA48   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
+| AVR8EA32   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
+| AVR8EA28   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
+| AVR16EA48  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 |
+| AVR16EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 |
+| AVR16EA28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 |
+| AVR32EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 |
+| AVR32EA48  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F0? | 0 |
+| AVR64EA28  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 |
+| AVR64EA32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 |
+| AVR64EA48  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 | <---- This implies (supported by observations like the 20/16 MHz oscillator and other limitations) that the EA is closer to a tinyAVR than a Dx-series. That it apparently underwent a *major* die rev sort of implies that development did not progress as smoothly as planned (which is consistent with the high revision number seen on the 2-series - Timing wise, I think they had to have the Ex in progress when the 2-series was released). 
+| AVR16DD14  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
+| AVR16DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
 | AVR16DD28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
 | AVR16DD32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
 | AVR32DD14  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <---,-- Same presumed die, same 5 character code
 | AVR32DD20  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <--/
 | AVR32DD28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
 | AVR32DD32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR64DD14  | `AVR     P:2D:1-3M2 (A1.KV00U.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <---,-- Same presumed die
+| AVR64DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
 | AVR64DD28  | 'AVR     P:2D:1-3M2 (A3.KV00K.0)  | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <---,-- Same presumed die, same 5 character code
 | AVR64DD32  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <--/
 | AVR32DB48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
@@ -39,7 +57,7 @@
 | AVR128DB32 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | AVR128DB28 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | AVR128DA64 | `AVR     P:2D:1-3M2 (A6.KV001.0)` | AVR   | P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <---,-- Same presumed die
-| AVR128DA48 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR128DA48 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 | <--/
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |    AVR| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--- WTF on justification of the AVR field?
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A7.KV001.0)` |    AVR| P:2 | D:1 | 3M2 |  A7  |  KV001 | 0 | <--- A6 and A7 silicon coexists inthe wild!
 | AVR128DA28 |  Please contribute                | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
@@ -75,10 +93,11 @@ After that some representation of the design in 5 character, unique per die, fol
 It appears that Dx-series parts have identifiers starting with KV0, and tinyAVR and Ex have values starting with 59B for tinyAVR and 59F for Ex, confirming that the Ex-series are not Dx-series parts that have evolved to have lower pincounts, but tinyAVR series parts that are evolving in the direction of more expansive features. 
 
 ### Table notes:
-Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters. 
-Cases where we know the P (always), D (non- 0/1), or OSC value (always 3M2) have been filled in, as have cases where there isnt any question about the what the family will be (so some DA/DB are left as ?'s, since they are inconsistent in how they justify the "AVR" (`    AVR` vs `AVR    `, the first of them being the result you get when you take "megaAVR" or "tinyAVR" and replace the first four letters with spaces.
+* Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters. 
+* Cases where we know the P (always), D (non- 0/1), or OSC value (always 3M2) have been filled in, as have cases where there isnt any question about the what the family will be (so some DA/DB are left as ?'s, since they are inconsistent in how they justify the "AVR" (`    AVR` vs `AVR    `, the first of them being the result you get when you take "megaAVR" or "tinyAVR" and replace the first four letters with spaces.
+* On all parts except 0/1 tinyAVRs it is known that the parts use OCD v1 not v0. It is not yet known if any of them advanced to OCDv1.
+* NVM numbers are 0: paged write without NRWW and fully mapped flash. 1: Not used (if I was guessing, I'd say they were toying with the possibility of releasing a device with paged writes, no RWW/NRWW, but with too much flash to fit it all in the data space) 2: AVR Dx-series word writes (the good NVMCTRL), 3: AVR Ex-series (paged writes with NRWW/RWW support) 
 
 ## Help understand these by submitting of the strings like the ones in the second column. 
 It will be printed by SerialUPDI when any programming atempt is made and verbose outout in, and will show info for the connected target chip) (so you can test thiserialUPDI from the currently connected target (so you can select, say, a tiny412, and then go through the whole AVR DX series or something attempting to program and getting that string in the second column above - al I need is the string and the part number of the device connected)
 To gather the data, it is sufficient to attempt a SerialUPDI upload to a correctly wired chip that is not the one you have selected in the IDE - the IDE will always print this in verbose mode before it gets to where it rejects a programming attempt targeting a different part
-
