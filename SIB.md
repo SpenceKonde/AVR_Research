@@ -56,7 +56,7 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | AVR128DB48 | `AVR     P:2D:1-3M2 (A5.KV00D.0)` | AVR   | P:2 | D:1 | 3M2 |  A5  |  KV00D | 0 | <--/
 | AVR128DB32 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
 | AVR128DB28 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
-| AVR128DA64 | `AVR     P:2D:1-3M2 (A6.KV001.0)` | AVR   | P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <---,-- Same presumed die
+| AVR128DA64 | `AVR     P:2D:1-3M2 (A6.KV001.0)` |`AVR    `| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <---,-- Same presumed die
 | AVR128DA48 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 | <--/
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--- WTF on justification of the AVR field?
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A7.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A7  |  KV001 | 0 | <--- A6 and A7 silicon coexists inthe wild!
