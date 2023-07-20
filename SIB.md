@@ -93,8 +93,15 @@ After that some representation of the design in 5 character, unique per die, fol
 It appears that Dx-series parts have identifiers starting with KV0, and tinyAVR and Ex have values starting with 59B for tinyAVR and 59F for Ex, confirming that the Ex-series are not Dx-series parts that have evolved to have lower pincounts, but tinyAVR series parts that are evolving in the direction of more expansive features. 
 
 ### Table notes:
+* Data is text encoded as an ascii c string, with a nul terminator - I think perversely placed in the middle of the string or something. In any event the point is that most methods to print the SIB for debugging fail if you don't strip out the nul, but other than that... yeah it's just ASCII. Microchip likes hiding ASCII in things people look at as hex.
+  * The KEY to enable nvm programming is, uh, `NVMProg `
+  * The KEY to enable USERROW programming of a locked chip is... `NVMUs&te` (the `&` is probably used as an abbreviation symbol)
+  * The KEY to perform a chip erase to unlock a chip is `NVMErase`
+  * These are some very creative people as you can see. Presumably there's also an `OCDStart` or something like that to start the on-chip debug interface, and likely there's something like `NVMSi&te` (NVM Si~gnature Wri~te)
 * Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters. 
-* Cases where we know the P (always), D (non- 0/1), or OSC value (always 3M2) have been filled in, as have cases where there isnt any question about the what the family will be (so some DA/DB are left as ?'s, since they are inconsistent in how they justify the "AVR" (`    AVR` vs `AVR    `, the first of them being the result you get when you take "megaAVR" or "tinyAVR" and replace the first four letters with spaces.
+* Cases where we know the P (always), D (non- 0/1), or OSC value (always 3M2) have been filled in, as have cases where there isnt any question about the what the family will be (so some DA/DB are left as ?'s, since they are inconsistent in how they justify the letters in "AVR"
+  * `    AVR` - Padding on the left (and "coincidentally" the same length as the text that was there, as if they'd just changed the lessers to ascii 0x20's. 
+  * `AVR    ` - Probably what is intended
 * On all parts except 0/1 tinyAVRs it is known that the parts use OCD v1 not v0. It is not yet known if any of them advanced to OCDv1.
 * NVM numbers are 0: paged write without NRWW and fully mapped flash. 1: Not used (if I was guessing, I'd say they were toying with the possibility of releasing a device with paged writes, no RWW/NRWW, but with too much flash to fit it all in the data space) 2: AVR Dx-series word writes (the good NVMCTRL), 3: AVR Ex-series (paged writes with NRWW/RWW support) 
 
