@@ -5,18 +5,28 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 
 | Part       | SIB                               | Family| NVM | OCD | OSC | Rev  |  CODE  | ? | Note
 |------------|-----------------------------------|-------|-----|-----|-----|------|--------|---|-----
-| AVR8EB32   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR8EB28   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR8EB20   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR8EB14   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR16EB32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR16EB28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR16EB20  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR16EB14  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR32EB32  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR32EB28  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR32EB20  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
-| AVR32EB14  | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB32   | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB28   | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB20   | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR8EB14   | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB32  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB28  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB20  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16EB14  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB32  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB28  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB20  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR32EB14  | Please contribute                 | AVR   | P:3 | D:1?| 3M2 |  ??  |  59??? | 0 | Not yet released
+| AVR16DU32  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR16DU28  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR16DU20  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR16DU14  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR32DU32  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR32DU28  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR32DU20  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR32DU14  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR64DU32  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
+| AVR64DU28  | Please contribute                 | AVR   | P:2?| D:1?| 3M2 |  ??  |  KV0?? | 0 | Not yet released
 | AVR8EA48   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
 | AVR8EA32   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
 | AVR8EA28   | Please contribute                 | AVR   | P:3 | D:1 | 3M2 |  ??  |  59F0? | 0 | Not yet released
@@ -104,9 +114,11 @@ It appears that Dx-series parts have identifiers starting with KV0, and tinyAVR 
   * `    AVR` - Padding on the left (and "coincidentally" the same length as the text that was there, as if they'd just changed the lessers to ascii 0x20's. 
   * `AVR    ` - Probably what is intended
 * On all parts except 0/1 tinyAVRs it is known that the parts use OCD v1 not v0. It is not yet known if any of them advanced to OCDv1.
-* NVM numbers are 0: paged write without NRWW and fully mapped flash. 1: Not used (if I was guessing, I'd say they were toying with the possibility of releasing a device with paged writes, no RWW/NRWW, but with too much flash to fit it all in the data space - they may have even been thinking they were going to need to use it on the ATmega6408/9 (which doesn't exist, but the 4808/9 have a device ID (the one you read from sigrow) byte 2 that indicates a 64k part - so maybe (pure speculation) those parts were going to be 64k with a modified write procedure, but they were getting nervous as this was a critical moment for the company and product line, and the nvm controller development was not going well. Management lost patience before engineering had fixed the problems, canceled NVMctrl v1, told the appropriate parts of the team to move the mapped flash boundary down to 0x4000 and squeeze everything in. and reassigned the designers who were failing at the NVMctrlv1 project to to the NVMctrl v3 project for the EA-series (I imagine they have two teams working in parallel to keep the release cadence up). Unfortunately, it looks like this group of engineers is Microchip's best chance to qualify for the Cooperative Bungling event in the Officeworker Olympics (despite aggressive practice - as evidenced by the EA-series errata), the bookies are still offering odds of 100:1 against their even qualifying for the main event - Various government teams have dominated Cooperative Bungling since it became an Office Sport. A company 
+* NVM numbers are 0: paged write without NRWW and fully mapped flash. 1: Not used (if I was guessing, I'd say they were toying with the possibility of releasing a device with paged writes, no RWW/NRWW, but with too much flash to fit it all in the data space - they may have even been thinking they were going to need to use it on the ATmega6408/9 (which doesn't exist, but the 4808/9 have a device ID (the one you read from sigrow) byte 2 that indicates a 64k part - so maybe (pure speculation) those parts were going to be 64k with a modified write procedure, but they were getting nervous as this was a critical moment for the company and product line, and the nvm controller development was not going well. Management lost patience before engineering had fixed the problems, canceled NVMctrl v1, told the appropriate parts of the team to move the mapped flash boundary down to 0x4000 and squeeze everything in, chopping off 16k of flash to make room. Meanwhile, it would appear that the group of engineers who was failing to deliver nvmctrl v1 was just reassigned to to v3, and while they finished, at least, the results are rather sad (see errata). I don't know how Microchip forgot how to make flash memory, but they seem to have.
+* In the rare event that more than one die rev is known to exist in the wild, the ones belived to currently be in broad distribution are in **bold** and the ones that are old enough that few of them remain that have not been used in something in *itallics*
+* For devices not yet released, we assumed the Ex's would continue to be 59'ers, and DU would be KV's. It is expected that flash writes on EB will be like the EA only hopefully with less errata, and that the DU will be a word-write part like the other Dx's, and that OCD version was unlikely to change (there are a few things that a debugger really needs to do. there are very few "nice to haves" that might be added on later though). And it was assumed that the Dx and Ex series would continue to use the 3M2 PDI oscillator. Not exactly profound, but it gives some idea of how much we know vs how much we don't know and how much we suspect but are not certain of, and how many we could become certain of as readers using parts we didn't have recorded SIBs for
 
-## Help understand these by submitting of the strings like the ones in the second column. 
-It will be printed by SerialUPDI when any programming atempt is made and verbose outout in, and will show info for the connected chip, (so you can read the SIB without writing anything by selecting a chip that doesn't match the chip you connect and then tryingto program it with verbose mode enabled using SerialUPDI. 
+## Help understand these by submitting the strings like the ones in the second column. 
+It will be printed by SerialUPDI when any programming atempt is made and verbose outout enabled, and will show info for the connected chip, (so you can read the SIB without writing anything by selecting a chip that doesn't match the chip you connect and then tryingto program it with verbose mode enabled using SerialUPDI). 
 
-To gather the data, it is sufficient to attempt a SerialUPDI upload to a correctly wired chip that is not the one you have selected in the IDE - the IDE will always print the full SIB (though it may error after that)
+To gather the data, it is sufficient to attempt a SerialUPDI upload to a correctly wired chip that is not the one you have selected in the IDE - it'll still print the full SIB (though it may error after that in current github DxCore version, because I need to tighten up the serial number printing code to work with the general case). 
