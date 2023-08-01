@@ -38,64 +38,65 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | AVR64EA28  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 |
 | AVR64EA32  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 |
 | AVR64EA48  | `AVR     P:3D:1-3M2 (B1.59F02.0)` | AVR   | P:3 | D:1 | 3M2 |  B1  |  59F02 | 0 | <---- This implies (supported by observations like the 20/16 MHz oscillator and other limitations) that the EA is closer to a tinyAVR than a Dx-series. That it apparently underwent a *major* die rev sort of implies that development did not progress as smoothly as planned (which is consistent with the high revision number seen on the 2-series - Timing wise, I think they had to have the Ex in progress when the 2-series was released, and they share the new ADC, which is the likely cause of revisions). 
-| AVR16DD14  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
-| AVR16DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR16DD28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
-| AVR16DD32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR32DD14  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <---,-- Same presumed die, same 5 character code
-| AVR32DD20  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <--/
-| AVR32DD28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
-| AVR32DD32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR64DD14  | `AVR     P:2D:1-3M2 (A1.KV00U.0)` | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <---,-- Same presumed die
-| AVR64DD20  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <--/
-| AVR64DD28  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <---,-- Same presumed die, same 5 character code
-| AVR64DD32  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` | AVR   | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <--/
-| AVR32DB48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
-| AVR32DB32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die.
-| AVR32DB28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR32DB48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
-| AVR32DB32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
-| AVR32DB28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR64DB48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
-| AVR64DB32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | 
-| AVR64DA64  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
-| AVR64DA48  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR64DA32  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
-| AVR64DA28  | Please contribute                 | AVR   | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
-| AVR128DB64 | `AVR     P:2D:1-3M2 (A5.KV00D.0)` | AVR   | P:2 | D:1 | 3M2 |  A5  |  KV00D | 0 | <---,-- Same presumed die, same 5 character code
-| AVR128DB48 | `AVR     P:2D:1-3M2 (A5.KV00D.0)` | AVR   | P:2 | D:1 | 3M2 |  A5  |  KV00D | 0 | <--/
-| AVR128DB32 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
-| AVR128DB28 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
+| AVR16DD14  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
+| AVR16DD20* | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR16DD28* | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die
+| AVR16DD32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR32DD14  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` |  AVR    | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <---,-- Same presumed die, same 5 character code
+| AVR32DD20  | `AVR     P:2D:1-3M2 (A1.KV00R.0)` |  AVR    | P:2 | D:1 | 3M2 |  A1  |  KV00R | 0 | <--/
+| AVR32DD28* | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
+| AVR32DD32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR64DD14  | `AVR     P:2D:1-3M2 (A1.KV00U.0)` |  AVR    | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <---,-- Same presumed die
+| AVR64DD20  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A1  |  KV00U | 0 | <--/
+| AVR64DD28* | `AVR     P:2D:1-3M2 (A3.KV00K.0)` |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <---,-- Same presumed die, same 5 character code
+| AVR64DD32  | `AVR     P:2D:1-3M2 (A3.KV00K.0)` |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00K | 0 | <--/
+| AVR32DB48  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
+| AVR32DB32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die.
+| AVR32DB28  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR32DB48  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 |
+| AVR32DB32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <---,-- Same presumed die,
+| AVR32DB28  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A?  |  KV00? | 0 | <--/
+| AVR64DB48  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00? | 0 |
+| AVR64DB32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00? | 0 | 
+| AVR64DA64  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00E?| 0 | <---,-- Same presumed die,
+| AVR64DA48  | `AVR     P:2D:1-3M2 (A3.KV00E.0)` |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00E | 0 | <--/
+| AVR64DA32  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00E?| 0 | <---,-- Same presumed die,
+| AVR64DA28  | Please contribute                 |  AVR    | P:2 | D:1 | 3M2 |  A3  |  KV00E?| 0 | <--/
+| AVR128DB64 | `AVR     P:2D:1-3M2 (A5.KV00D.0)` |  AVR    | P:2 | D:1 | 3M2 |  A5  |  KV00D | 0 | <---,-- Same presumed die, same 5 character code
+| AVR128DB48 | `AVR     P:2D:1-3M2 (A5.KV00D.0)` |  AVR    | P:2 | D:1 | 3M2 |  A5  |  KV00D | 0 | <--/
+| AVR128DB32 | Please contribute                 |  ?????  | P:2 | D:1 | 3M2 |  A5  |  KV00D?| 0 |
+| AVR128DB28 | Please contribute                 |  ?????  | P:2 | D:1 | 3M2 |  A5  |  KV00D?| 0 |
 | AVR128DA64 | `AVR     P:2D:1-3M2 (A6.KV001.0)` |`AVR    `| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <---,-- Same presumed die
-| AVR128DA48 | Please contribute                 | ????? | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 | <--/
+| AVR128DA48 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--/
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A6.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A6  |  KV001 | 0 | <--- WTF on justification of the AVR field?
 | AVR128DA32 | `    AVR P:2D:1-3M2 (A7.KV001.0)` |`    AVR`| P:2 | D:1 | 3M2 |  A7  |  KV001 | 0 | <--- A6 and A7 silicon coexists inthe wild!
-| AVR128DA28 |  Please contribute                | ????? | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 |
-| ATmega808  |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   A  |  59B2? | 0 | 
-| ATmega809  |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
-| ATmega1608 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
-| ATmega1609 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
-| ATmega3208 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
-| ATmega3209 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
-| ATmega3208 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
-| ATmega3209 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
-| ATmega4808 | `megaAVR P:0D:1-3M2 (01.59B20.0)' |megaAVR| P:0 | D:1 | 3M2 |   B  |  59B20 | 0 | 
-| ATmega4809 |  Please contribute                |megaAVR| P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
-| t202/4/6,402/4 |  Please contribute            |tinyAVR| P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
-| t804/6/7,407| Please contribute                |tinyAVR| P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
-| t1604/6/7  | Please contribute                 |tinyAVR| P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
-| t212/4/6,412/4 | `tinyAVR P:0D:0-3M2 (00.59B14.0)`|tinyAVR| P:0 | D:0 | 3M2 |  *A* |  59B14 | 0 | Unconfirmed in the wild
-| t212/4/6,412/4 | `tinyAVR P:0D:0-3M2 (01.59B14.0)`|tinyAVR| P:0 | D:0 | 3M2 | **B**|  59B14 | 0 |
-| t212/4/6,412/4 | `tinyAVR P:0D:0-3M2 (02.59B14.0)`|tinyAVR| P:0 | D:0 | 3M2 | **C**|  59B14 | 0 | Unconfirmed in the wild
-| t814/6/7,417 | Please contribute              |tinyAVR| P:0 | D:0 | 3M2 |   A  |  59B16 | 0 | 59B16 is a guess. 
-| t1614/6/7  | `tinyAVR P:0D:0-3M2 (00.59B15.0)` |tinyAVR| P:0 | D:0 | 3M2 |  *A* |  59B15 | 0 | 
-| t1614/6/7  | `tinyAVR P:0D:0-3M2 (01.59B15.0)` |tinyAVR| P:0 | D:0 | 3M2 | **B**|  59B15 | 0 | Unconfirmed in the wild
-| t3216/7    | `tinyAVR P:0D:0-3M2 (00.59B17.0)` |tinyAVR| P:0 | D:0 | 3M2 |  *A* |  59B17 | 0 | Unconfirmed in the wild
-| t3216/7    | `tinyAVR P:0D:0-3M2 (02.59B17.0)` |tinyAVR| P:0 | D:0 | 3M2 | **C**|  59B17 | 0 |
-| t82x/t42x  | `tinyAVR P:0D:1-3M2 (01.59B0F.0)` |tinyAVR| P:0 | D:1 | 3M2 |   B  |  59B0F | 0 |
-| t1624/6/7  | `tinyAVR P:0D:1-3M2 (04.59B0D.0)` |tinyAVR| P:0 | D:1 | 3M2 |   E  |  59B0D | 0 |
-| t3224/6/7  | `tinyAVR P:0D:1-3M2 (00.59B0E.0)` |tinyAVR| P:0 | D:1 | 3M2 |   A  |  59B0E | 0 |
+| AVR128DA28 |  Please contribute                |  ?????  | P:2 | D:1 | 3M2 |  A?  |  KV001 | 0 |
+| ATmega808  |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   A  |  59B2? | 0 | 
+| ATmega809  |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
+| ATmega1608 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
+| ATmega1609 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   A  |  59B2? | 0 |
+| ATmega3208 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
+| ATmega3209 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
+| ATmega3208 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
+| ATmega3209 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
+| ATmega4808 | `megaAVR P:0D:1-3M2 (01.59B20.0)' | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B20 | 0 | 
+| ATmega4809 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
+| t82x/t42x  | `tinyAVR P:0D:1-3M2 (01.59B0F.0)` | tinyAVR | P:0 | D:1 | 3M2 |   B  |  59B0F | 0 |
+| t1624/6/7  | `tinyAVR P:0D:1-3M2 (04.59B0D.0)` | tinyAVR | P:0 | D:1 | 3M2 |   E  |  59B0D | 0 |
+| t3224/6/7  | `tinyAVR P:0D:1-3M2 (00.59B0E.0)` | tinyAVR | P:0 | D:1 | 3M2 |   A  |  59B0E | 0 | 
+| t202/4/6,402/4 |  Please contribute            | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
+| t804/6/7,407| Please contribute                | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
+| t1604/6/7  | Please contribute                 | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B?? | 0 |
+|t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (00.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B14 | 0 | Unconfirmed in the wild
+|t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (01.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 | **B**|  59B14 | 0 |
+|t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (02.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 | **C**|  59B14 | 0 | Unconfirmed in the wild
+| t814/6/7,417 | Please contribute               | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B16 | 0 | 59B16 is a guess. 
+| t1614/6/7  | `tinyAVR P:0D:0-3M2 (00.59B15.0)` | tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B15 | 0 | 
+| t1614/6/7  | `tinyAVR P:0D:0-3M2 (01.59B15.0)` | tinyAVR | P:0 | D:0 | 3M2 | **B**|  59B15 | 0 | Unconfirmed in the wild
+| t3216/7    | `tinyAVR P:0D:0-3M2 (00.59B17.0)` | tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B17 | 0 | Unconfirmed in the wild
+| t3216/7    | `tinyAVR P:0D:0-3M2 (02.59B17.0)` | tinyAVR | P:0 | D:0 | 3M2 | **C**|  59B17 | 0 |
 
+* These have been ordered with the intent of reading the SIB and sigrows (hell, probaly the whole data space that isn't SRAM is likely going to be dumped and recorded), then the encapsulation will be filed off, crappy die photos will be taken on a $30 digital microscope, and the dimensions and appearance of the dies compared. Another interesting comparison would be the 3217 vs 1617 (or 1616 - which should be the same die as the 1617 as I understand and less material to file away) - the 3217 has 32k of flash and 2k of SRAM. The 161x has 16k of flash **and 2k of SRAM** And an 817, would not only have smaller flash and ram, it would also be missing a chunk of peripherals. It will be interesting to see if I can use what I know about the chips to infer functionality associated with different areas of the die (there should be a sort of homogenous area that is twice as big in the 3217 vs 1617 for the flash, while the RAM will be the same size. Between the DD28 and 16/32DD20 parts, I should also be able to calculate which  
 
 Pymcuprog lists the P:# as the version of the NVM controller it uses (P for programming), and the D:# is the version of the on-chip debugger (consistent with the datasheet) and the 3M2 is in reference to the "PDI oscillator" (does that mean the base clock speed is apx. 32 MHz? It's plausible, as the options we have for clock speed are 4, 8, 16, and 32 MHz, which would be what you'd naturally do if you were willing to allocate two bits to representing it, and were starting with a 32 MHz clock, right?). Then we get to the parens containing likely the most interesting information.... First, there's the die rev right there, without having to dig for it! Second, there's a cryptic 5 hex-digit value. I belive this identifies the die design. Devices widely belived to share a die all give the same value here. If this is the case, it jumps out that there are two bases - KV00 (the Dx-series, ie, good parts) and 59___, the Ex-series/tinyAVR (the generally lower end parts).
 
