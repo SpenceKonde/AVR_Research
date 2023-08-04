@@ -114,6 +114,7 @@ One curious thing is that the DA and DB parts appear to only have one ID per fla
     * The KEY to enable nvm programming is, uh, `NVMProg `
     * The KEY to enable USERROW programming of a locked chip is... `NVMUs&te` (the `&` is probably used as an abbreviation symbol, NVMUs~er row wri~te )
     * The KEY to perform a chip erase to unlock a chip is `NVMErase`
+    * The KEY to enter OCD mode is `OCD     `
   * Some fields of part serial numbers.
   * Many AVR programming protocols chose the commands based on the first ascii letter in the function. 
 * Cases where pieces of the 5-digit codes can easily be deduced have been and ?'s left in place of the unknown letters.
