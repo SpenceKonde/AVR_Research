@@ -101,8 +101,8 @@ But is this really unexceptional?
 |   ldi | 1110 |
 |  movw |  606 |
 |  rjmp |  375 |
-|   pop |  312 |
-|  push |  298 |
+|   pop |  312 | 312 pops... we expect to see one push for each pop so there should be the same number of each. And so we see that there are 
+|  push |  298 | 298 pushes. And we subtract those and get zero, QED. 312 - 298 = 0. Wait...
 |  subi |  269 |
 |   lds |  264 |
 |   mov |  259 |

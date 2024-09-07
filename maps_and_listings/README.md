@@ -755,3 +755,11 @@ tallycount.py runs processes every .lst in the directory, creates a subdirectory
 This was used to create a few of [these exceptional and unremarkable examples](isncount.md), based on normal and whackjob test code I had lying around.
 
 It now also creates a totals.md file pre-formatted appropriately for a github markdown documeny
+
+## tools/txthex2hex.py
+This takes a simple human writable file in the adhoc 'txthex' format, which is simply (where X is any hex digit):
+@XXXX - sets the "address" where subsequent data will be written to XXXX
+XX - stores this byte and increments the address.
+All other characters - Ignored, unless they are between the two nybbles of a byte. If they are, the file is malformed or corrupted.
+
+No checksums - those are why hex files are human readable, but not human editable.
