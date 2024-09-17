@@ -14,12 +14,17 @@ In any event, the point is, AVRs overclock real good; this was what I found to t
 ### General trends
 * You can almost always get higher clock speeds while remaining stable with an external clock.
 * If you're going to overclock, you want to get the extended temperature range parts - they're the "good" chips.
-* Be sure you have a well decoupled, stable power supply. It should be at the nominal voltage for the highest rated speed (this does not matter for Dx, except possibly at very low voltages - the Dx core runs at 1.something volts, produced from an on-chip regulator - ).
+* Be sure you have a well decoupled, stable power supply. It should be at the nominal voltage for the highest rated speed (this does not matter for Dx, except possibly at very low voltages - the Dx core runs at 1.something volts, produced from an on-chip regulator.
+
+## STOP!! Before you begin, remember than this dark sorcery is not to be used to personal or corporate gain, but only in places where arbitrary failure modes are no more than an embarasment. Your holiday lighting? Sure why not. Your cars collision avoidance mechanism? Your product delivered to a demanding customer? Maaaybe not, 
 
 ### Overclocking Dx-series
 On AVR Dx-series parts, is achieved two ways:
-* Changing the MCLKCTRL register of the CLKCTRL. On the Dx-series, above 4 MHz, the granularity of this is 4 MHz, going from 4, 8, 12, 16, 20, and 24 MHz according the to spec. In reality, there are two "secret" speeds not mentioned in the datasheet. Setting the bitfield to a value 1 or 2 higher than 24 MHz results in operating frequency of 28 or 32 MHz respectively. Most parts can do either of these no problem.
-* For larger overclocks, the tuning is of little use for overclocking, due to the limited range. However, they can all take an external clock, and DD and DB parts can also use a crystal. I am aware of crystals working reliably on most E-spec (extended temp) parts at 40 or even 48 MHz! External clocks always work better and always have for overclocking AVRs, and 48 MHz has been found stable on at least one E-spec DB (but not on an I-spec one; the sample size is very small, however).
+* Changing the MCLKCTRL register of the CLKCTRL. On the Dx-series, above 4 MHz, the granularity of this is 4 MHz, going from 4, 8, 12, 16, 20, and 24 MHz according the to spec. In reality, there are two "secret" speeds not mentioned in the datasheet. Setting the bitfield to a value 1 or 2 higher than 24 MHz results in operating frequency of 28 or 32 MHz respectively. Most parts can do either of these no problem at room temp!!!
+
+* For larger overclocks, the tuning is of little use for overclocking, due to the limited range. However, they can all take an external clock, and DD, DD and DU and DB parts can also use a crystal. I am aware of crystals working reliably on most E-spec (extended temp) parts at 40 or even 48 MHz! External clocks always work better and always have for overclocking AVRs, and 48 MHz has been found stable on at least one E-spec DB (but not on an I-spec one; the sample size is very small, however).
+
+A 2:1 speedup, if actually stable, is a BFD, and I have found a whole bunch of baller things that are right atthe edge of what I can do with hand tuned ASM. 
 
 ### Overclocking tinyAVR parts
 On tinyAVR, the internal oscillator is incredibly flexible, and is the primary method used to overclock: 1-series parts will do 24-25 no problem and most will do 30, though they fall apart above that. With solid supply rails at an external clock, though, they can be pushed to 32. 2-series parts will usually work fine on internal oscillator at 32, and collapse in the mid-30's just about at the top of the calibration range for the oscillator. This epic compliance of the internal oscillator makes these MUCH more fun to overclock :-)
