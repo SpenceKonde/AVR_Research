@@ -80,7 +80,7 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 | ATmega3208 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
 | ATmega3209 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   D  |  59B2? | 0 |
 | ATmega4808 | `megaAVR P:0D:1-3M2 (01.59B20.0)' | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B20 | 0 | 
-| ATmega4809 |  Please contribute                | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B2? | 0 |
+| ATmega4809 | `megaAVR P:0D:1-3M2 (01.59B20.0)' | megaAVR | P:0 | D:1 | 3M2 |   B  |  59B20 | 0 | using snap programmer, observed by pulseview (@100000 Kbit/8e2)
 | t82x/t42x  | `tinyAVR P:0D:1-3M2 (01.59B0F.0)` | tinyAVR | P:0 | D:1 | 3M2 |   B  |  59B0F | 0 |
 | t1624/6/7  | `tinyAVR P:0D:1-3M2 (04.59B0D.0)` | tinyAVR | P:0 | D:1 | 3M2 |   E  |  59B0D | 0 |
 | t3224/6/7  | `tinyAVR P:0D:1-3M2 (00.59B0E.0)` | tinyAVR | P:0 | D:1 | 3M2 |   A  |  59B0E | 0 | 
@@ -90,7 +90,9 @@ During UPDI programming, the programmer asks the chip for it's System Informatio
 |t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (00.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B14 | 0 | Unconfirmed in the wild
 |t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (01.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 | **B**|  59B14 | 0 |
 |t212/4/6,412/4|`tinyAVR P:0D:0-3M2 (02.59B14.0)`| tinyAVR | P:0 | D:0 | 3M2 | **C**|  59B14 | 0 | Unconfirmed in the wild
-| t814/6/7,417 | Please contribute               | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B16 | 0 | 59B16 is a guess. 
+| t814/6/7,417 | Please contribute               | tinyAVR | P:0 | D:0 | 3M2 |   A  |  59B16 | 0 | 59B16 is a guess.
+| ATtiny817  | tinyAVR P:0D:0-3M2 (01.59B16.0)   | tinyAVR | P:0 | D:0 | 3M2 |   B  |  59B16 | 0 | using snap programmer, observed by pulseview (@100000 Kbit/8e2) 
+| ATtiny1616 | tinyAVR P:0D:0-3M2 (01.59B15.0)   | tinyAVR | P:0 | D:0 | 3M2 |   B  |  59B15 | 0 | using snap programmer, observed by pulseview (@100000 Kbit/8e2) 
 | t1614/6/7  | `tinyAVR P:0D:0-3M2 (00.59B15.0)` | tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B15 | 0 | 
 | t1614/6/7  | `tinyAVR P:0D:0-3M2 (01.59B15.0)` | tinyAVR | P:0 | D:0 | 3M2 | **B**|  59B15 | 0 | Unconfirmed in the wild
 | t3216/7    | `tinyAVR P:0D:0-3M2 (00.59B17.0)` | tinyAVR | P:0 | D:0 | 3M2 |  *A* |  59B17 | 0 | Unconfirmed in the wild
