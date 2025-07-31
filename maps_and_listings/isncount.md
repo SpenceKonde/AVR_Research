@@ -1,25 +1,19 @@
-# Examples of exceptional an unexceptional instruction distributions
+# Examples of exceptional and unexceptional instruction distributions
 
 These are the following sketches - can you guess which is which?
 
 
-## Exceptional #1
-A highly abnormal distribution of instructions
-
-What immediately jumps out are:
-1. An absolutely huge number of eor instructions.
-2. note that a synonym for add rd, rd is lsl rd, likewise adc and rol. There's a whole lot of shifting and xoring going on, the total numbers of certain instructions seem to be
-
+## Contestant 1: 
 
 | Isn.  |count| Note
 |-------|-----|------
 | total |3118 |
-|   eor | 326 | Lotta xoring going on!
-|   sts | 285 | unusually large number of STSs
+|   eor | 326 |
+|   sts | 285 |
 |   ldi | 275 |
-|   add | 271 | add rd, rd = lsl rd
+|   add | 271 |
 |  movw | 222 |
-|   adc | 215 | adc rd, rd = rol rd
+|   adc | 215 |
 |   lds | 149 |
 |   lsr | 129 |
 |   mov | 106 |
@@ -89,11 +83,7 @@ What immediately jumps out are:
 |   clt |   1 |
 
 
-## Unexceptional
-
-### Unexceptional #1
-But is this really unexceptional?
-
+## Contestant 2
 
 | Isn.  |count |
 |-------|------|
@@ -101,8 +91,8 @@ But is this really unexceptional?
 |   ldi | 1110 |
 |  movw |  606 |
 |  rjmp |  375 |
-|   pop |  312 | 312 pops... we expect to see one push for each pop so there should be the same number of each. And so we see that there are 
-|  push |  298 | 298 pushes. And we subtract those and get zero, QED. 312 - 298 = 0. Wait...
+|   pop |  312 |
+|  push |  298 |
 |  subi |  269 |
 |   lds |  264 |
 |   mov |  259 |
@@ -183,3 +173,30 @@ But is this really unexceptional?
 | st_-X |    1 |
 |   sec |    1 |
 |   set |    1 |
+
+
+## Analysis
+
+Contestant #1 is clearly exceptional. The top instructions are, in order:
+1. eor (exclusive OR)
+2. sts (store a value in a working register to either main memory (to update a variable) or to write a register in the extended I/O space)
+3. ldi (load immediate - this instruction is commonly found as a "top used instruction") 
+4. add (addition - or logical shift left)
+5. movw (copies the contents of working register X and X+1 to Y and Y+1. X and Y both even)
+6. adc (addition with carry)
+
+
+WTF is going on there? 
+
+That program consists of every 16-bit full-period XORSHIFT prng in hand optimized asm, and a procedure to initialize them and then call them 2^16 times, checking that the result is never 0 or the first result. By printing a small bit of text after finishing every generator, the serial console's timestamps also served to confirm expected performance. These are of the form:
+```c
+  /* a, b, and c are compile-time known constants. */
+  /* y is a static uint16_t, and is both the seed for the next round and the value returned. 
+  y ^= y << a; 
+  y ^= y >> b;
+  y ^= y << c;
+  /* the above code, generated for each set of triples confirmed to be full length, used for initial testing was then optimized. The lines of the above form were replaced (find/replace) with hand-optimized asm, as this code sucks with -Os if you care about performance too */
+
+  return y;
+```
+The totals look more normal (and the binary is snaller but slower) if you let the compiler do it. The compiler is uninspiring on this sort of math (Secret: The architectures algos get written for have an operation that bitshifts or rotates a register n bits - same cost regardless of shift, We need 1 clock per cycle per byte to do it the naive way.)
